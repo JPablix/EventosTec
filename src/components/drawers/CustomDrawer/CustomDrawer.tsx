@@ -3,11 +3,14 @@ import React from 'react';
 import { View, Text, Image, Pressable, ImageBackground} from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from "../../../context/AuthContext";
 
 // Styles
 import { styles } from './CustomDrawer.style';
 
 const CustomDrawer = (props) => {
+    const { onLogout } = useAuth();
+    
     return (
         <View style={styles.container}>
             <DrawerContentScrollView 
@@ -39,7 +42,12 @@ const CustomDrawer = (props) => {
                         <Text style={styles.footerText}>Tell a friend</Text>
                     </View>
                 </Pressable>
-                <Pressable onPress={() => {}} style={styles.footerPressable}>
+                <Pressable 
+                    onPress={() => {
+                    onLogout();
+                    props.navigation.closeDrawer();
+                    }} 
+                    style={styles.footerPressable}>
                     <View 
                     style={styles.footerTextContainer}>
                         <Ionicons name="exit-outline" size={22} />

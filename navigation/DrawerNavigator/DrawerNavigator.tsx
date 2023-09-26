@@ -7,13 +7,20 @@ import Inicio from '../../screens/Inicio/Inicio';
 import Busqueda from '../../screens/Busqueda/Busqueda';
 import Perfil from '../../screens/Perfil/Perfil';
 import About from '../../screens/About/About';
+import Login from '../../screens/Login/Login';
 
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
 
+//
+import { AuthProvider, useAuth } from "../../src/context/AuthContext";
+
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
+
+  const {authState, onLogout} = useAuth();
+
   return (
     <Drawer.Navigator 
       drawerContent={props => <CustomDrawer {...props} />}
@@ -26,14 +33,26 @@ function DrawerNavigator() {
           fontSize: 16,
         },
       }}>
-      <Drawer.Screen 
-        name="Inicio" 
-        component={Inicio} 
-        options={{
-        drawerIcon: ({color}) => (
-          <Ionicons name='home' size={23} color={color} />
+      
+      
+      {
+        authState.authenticated ? (
+          <Drawer.Screen 
+            name="Inicio" 
+            component={Inicio} 
+            options={{
+            drawerIcon: ({color}) => (
+              <Ionicons name='home' size={23} color={color} />
+            )
+          }}/>
+        ): (
+          <Drawer.Screen 
+            name="Login" 
+            component={Login} 
+            options={{headerShown: false}}/>
         )
-      }}/>
+      }
+
       <Drawer.Screen 
         name="Búsqueda" 
         component={Busqueda} 
