@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from '../../../constants/Colors'
 
 export const styles = StyleSheet.create(
   {
@@ -8,16 +9,17 @@ export const styles = StyleSheet.create(
       marginTop: 22,
     },
     button: {
+      minWidth: 80,
       borderRadius: 20,
       padding: 10,
-      elevation: 2,
-      backgroundColor: '#117672',
+      elevation: 10,
+      backgroundColor: Colors.secondary,
     },
     textStyle: {
       alignItems: 'center',
-      color: 'white',
+      color: Colors.white,
       fontSize: 18,
-      fontWeight: 'bold',
+      fontFamily: 'oswaldBold',
       textAlign: 'center',
     },
   }

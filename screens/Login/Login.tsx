@@ -14,20 +14,22 @@ const Login = () => {
     const [password, setPassword] = useState<string>("");
     const { onLogin, onRegister } = useAuth();
     return (
-        <View>
-        <Text>Email</Text>
-        <TextInput
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-            placeholder="Email"
-        />
-        <Text>Password</Text>
-        <TextInput
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            placeholder="Password"
-        />
-        <IconTextButton text="Login" onPress={() => onLogin(email, password)} />
+        <View style={styles.container}>
+            <View style={styles.card}>
+                <Text style={styles.inputTitle}>Email</Text>
+                <TextInput
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                    placeholder="Email"
+                />
+                <Text style={styles.inputTitle}>Password</Text>
+                <TextInput
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
+                    placeholder="Password"
+                />
+                <IconTextButton text="Login" onPress={() => onLogin(email, password)} />
+            </View>
         </View>
     )
 }
