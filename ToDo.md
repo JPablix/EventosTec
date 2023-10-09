@@ -1,6 +1,6 @@
 # Lista de Pendientes
-- [ ] Aplicar las constantes de colores y fuentes a los elementos del drawer
-- [ ]
+- [ ] Cambiar los colores
+- [ ] Creación de la pantalla de registro
 - [ ]
 
 ## Implementaciones

@@ -8,6 +8,7 @@ import Busqueda from '../../screens/Busqueda/Busqueda';
 import Perfil from '../../screens/Perfil/Perfil';
 import About from '../../screens/About/About';
 import Login from '../../screens/Login/Login';
+import Register from '../../screens/Register/Register';
 
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
@@ -34,7 +35,11 @@ function DrawerNavigator() {
         },
       }}>
       
-      
+      <Drawer.Screen 
+        name="Register" 
+        component={Register} 
+        options={{headerShown: false}}/>
+        
       {
         authState.authenticated ? (
           <Drawer.Screen 
