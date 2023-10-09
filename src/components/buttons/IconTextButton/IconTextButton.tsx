@@ -15,11 +15,17 @@ const IconTextButton = (props) => {
             onPress={() => props.onPress()}
         >
             <Text style={styles.textStyle}>
+                {props.iconPosition === 'left' && (
+                    <FontAwesome 
+                    name={props.iconName} 
+                    style={styles.textStyle}/>
+                )}
                 {props.text}
-                <FontAwesome 
+                {props.iconPosition === 'right' && (
+                    <FontAwesome 
                     name={props.iconName}
-                    style={styles.textStyle}
-                />
+                    style={styles.textStyle}/>
+                )}
             </Text>
         </Pressable>
     </View>
@@ -30,6 +36,7 @@ const IconTextButton = (props) => {
 IconTextButton.propTypes = {
     text: PropTypes.string,
     iconName: PropTypes.string,
+    iconPosition: PropTypes.string,
     onPress: PropTypes.func.isRequired,
 };
 

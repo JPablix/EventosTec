@@ -36,7 +36,9 @@ const Login = () => {
                     <IconTextButton 
                     text="Login" onPress={() => onLogin(email, password)}/>
                     <IconTextButton
-                    text = "Crear Cuenta"
+                    text = "Register "
+                    iconName="chevron-right"
+                    iconPosition="right"
                     onPress={() => navigation.navigate("Register" as never)}/>
                 </View>
             </View>

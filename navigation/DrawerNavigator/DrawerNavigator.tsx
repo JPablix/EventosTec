@@ -34,11 +34,6 @@ function DrawerNavigator() {
           fontSize: 16,
         },
       }}>
-      
-      <Drawer.Screen 
-        name="Register" 
-        component={Register} 
-        options={{headerShown: false}}/>
         
       {
         authState.authenticated ? (
@@ -57,6 +52,12 @@ function DrawerNavigator() {
             options={{headerShown: false}}/>
         )
       }
+
+      <Drawer.Screen
+      name="Register"
+      component={Register}
+      options={{ headerShown: false }}
+      />
 
       <Drawer.Screen 
         name="Búsqueda" 

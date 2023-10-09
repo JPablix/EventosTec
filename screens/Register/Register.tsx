@@ -12,6 +12,7 @@ import { useAuth } from "../../src/context/AuthContext";
 // Components
 import LineTextInput from "../../src/components/inputs/LineTextInput/LineTextInput";
 import IconTextButton from "../../src/components/buttons/IconTextButton/IconTextButton";
+import SwitchInput from "../../src/components/inputs/SwitchInput/SwitchInput";
 
 const Register = () => {
     // Inputs states
@@ -32,24 +33,21 @@ const Register = () => {
             isOrganization
         );
         if (!register) return;
+        console.log("register", register);
         await onLogin(email, password);
-        if (isOrganization) {
-          navigation.navigate("SetOrganizationInfo" as never);
-        } else {
-          navigation.navigate("SetUserInfo" as never);
-        }
+        navigation.navigate("Inicio" as never);
       };
 
 
   return (
     <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.cardTitle}>Registrarse</Text>
+            <Text style={styles.cardTitle}>Register</Text>
             <View style={styles.card}>
                 <Text style={styles.inputTitle}>Nombre de Usuario</Text>
                 <LineTextInput
                         value={userName}
-                        onChangeText={(text) => setEmail(text)}
+                        onChangeText={(text) => setUserName(text)}
                         placeholder="Nombre a mostrar"
                     />
                 <Text style={styles.inputTitle}>Correo</Text>
@@ -60,12 +58,21 @@ const Register = () => {
                 <Text style={styles.inputTitle}>Contraseña</Text>
                 <LineTextInput
                         value={password}
-                        onChangeText={(text) => setEmail(text)}
+                        onChangeText={(text) => setPassword(text)}
                         placeholder="Contraseña"/>
+                <SwitchInput
+                  text="Usuario Organización"
+                  isActivated={isOrganization}
+                  setIsActivated={setIsOrganization}
+                />
+
                 <View style={styles.buttonsContainer}>
                   <IconTextButton
-                  text = "Regresar a Login"
-                  onPress={() => navigation.navigate("Login" as never)}/>
+                  text = " Login"
+                  onPress={() => navigation.navigate("Login" as never)}
+                  iconName="chevron-left"
+                  iconPosition="left"
+                  />
                   <IconTextButton 
                   text="Registrarse" 
                   onPress={handleRegister} />

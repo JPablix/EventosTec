@@ -26,6 +26,7 @@ const LineTextInput = (props) => {
                 onBlur={handleBlur}
                 placeholder={props.placeholder}
                 value={props.value}
+                onChangeText={props.onChangeText}
             />
         </View>
     )
@@ -34,7 +35,7 @@ const LineTextInput = (props) => {
 // Props
 LineTextInput.propTypes = {
     placeholder: PropTypes.string,
-    onChangeText: PropTypes.func,
+    onChangeText: PropTypes.func || null,
     value: PropTypes.string,
 };
 
