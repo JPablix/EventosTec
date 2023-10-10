@@ -4,13 +4,13 @@ import { View, Text, Image, Pressable, ImageBackground} from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from "../../../context/AuthContext";
-
+import { useNavigation } from "@react-navigation/native";
 // Styles
 import { styles } from './CustomDrawer.style';
 
 const CustomDrawer = (props) => {
     const { onLogout } = useAuth();
-    
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <DrawerContentScrollView 
@@ -23,7 +23,9 @@ const CustomDrawer = (props) => {
                         source={require('../../../images/profileExample.png')} 
                         style={styles.profileImage} />
                     <View style={{}}>
-                        <Text style={styles.userName}>User</Text>
+                        <Text style={styles.userName}>
+                            User Name
+                        </Text>
                         <View style={styles.followInfo}>
                             <Text style={styles.followNumber}>999</Text>
                             <Ionicons name='person' size={14} color='#fff' />

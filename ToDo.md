@@ -2,7 +2,7 @@
 - [ ] Cambiar los colores
 - [X] Creación de la pantalla de registro
 - [ ] Creación de la pantalla editar datos
-- [ ] Exportar las pantallas login y register a Stack
+- [x] Exportar las pantallas login y register a Stack
 
 ## Implementaciones
 ...

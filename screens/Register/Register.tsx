@@ -32,10 +32,15 @@ const Register = () => {
             userName,
             isOrganization
         );
-        if (!register) return;
+        if (!register){
+            console.log("error en el registro");
+            return;
+        } else {
+
         console.log("register", register);
         await onLogin(email, password);
         navigation.navigate("Inicio" as never);
+        }
       };
 
 
