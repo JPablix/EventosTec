@@ -11,6 +11,7 @@ import Perfil from '../../screens/Perfil/Perfil';
 import About from '../../screens/About/About';
 import Login from '../../screens/Login/Login';
 import Register from '../../screens/Register/Register';
+import UpdateUser from '../../screens/UpdateUser/UpdateUser';
 
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
@@ -32,12 +33,20 @@ function DrawerNavigator() {
   const Drawer = createDrawerNavigator();
   const {authState} = useAuth();
 
+  //Datos del Usuario
+  const userName = authState.data?.userName;
+
+
   useEffect(() => {
   }, [authState.authenticated]);
 
   return (
     <Drawer.Navigator 
-      drawerContent={props => <CustomDrawer {...props}/>}
+      drawerContent={props => 
+        <CustomDrawer {...props} 
+          userName={userName}
+        />
+        }
       screenOptions={{
         drawerActiveBackgroundColor: '#4298da',
         drawerActiveTintColor: '#fff',
@@ -49,12 +58,20 @@ function DrawerNavigator() {
       }}>
       {/* Pantallas que se muestran solo cuando el usuario no está autenticado */}
       {!authState.authenticated && (
+        <>
+          <Drawer.Screen
+          name="UpdateUser"
+          component={UpdateUser}
+          options={{
+              headerShown: false,
+            }}/>
           <Drawer.Screen 
           name="Auth" 
           component={AuthStackScreen} 
           options={{ 
             headerShown: false,
           }}/>
+        </>
       )}
       {/* Pantallas que se muestran cuando el usuario está autenticado */}
       {authState.authenticated && (

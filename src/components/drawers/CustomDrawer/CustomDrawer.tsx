@@ -11,6 +11,8 @@ import { styles } from './CustomDrawer.style';
 const CustomDrawer = (props) => {
     const { onLogout } = useAuth();
     const navigation = useNavigation();
+
+    const userName = props.userName || "UserName";
     return (
         <View style={styles.container}>
             <DrawerContentScrollView 
@@ -24,7 +26,7 @@ const CustomDrawer = (props) => {
                         style={styles.profileImage} />
                     <View style={{}}>
                         <Text style={styles.userName}>
-                            User Name
+                            {userName}
                         </Text>
                         <View style={styles.followInfo}>
                             <Text style={styles.followNumber}>999</Text>
