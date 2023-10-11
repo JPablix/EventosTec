@@ -22,7 +22,7 @@ const CustomDrawer = (props) => {
                     source={require('../../../images/patternExample.png')} 
                     style={styles.imageBackground}>
                     <Image 
-                        source={require('../../../images/profileExample.png')} 
+                        source={require('../../../images/profileDefault.png')} 
                         style={styles.profileImage} />
                     <View style={{}}>
                         <Text style={styles.userName}>

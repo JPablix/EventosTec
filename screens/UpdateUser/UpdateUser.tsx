@@ -57,16 +57,19 @@ const UpdateUser = () => {
                             placeholder="Hola soy..."/>
                     <View style={styles.buttonsContainer}>
                     <IconTextButton
-                    text = " Login"
-                    onPress={() => navigation.navigate("Login" as never)}
-                    iconName="chevron-left"
-                    iconPosition="left"
+                    text = "Cancelar "
+                    onPress={() => navigation.navigate("Perfil" as never)}
+                    iconName="close"
+                    iconPosition="right"
                     />
                     <IconTextButton 
-                    text="Confirmar" 
+                    text="Confirmar " 
                     onPress={nada => {
                         console.log("Cambiar Datos");
+                        navigation.navigate("Perfil" as never);
                     }}
+                    iconName="check"
+                    iconPosition="right"
                     />
                     </View>
                 </View>

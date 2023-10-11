@@ -1,11 +1,11 @@
 # Lista de Pendientes
 - [ ] Cambiar los colores
-- [ ] Hacer que el usuario se le asigne una foto por defecto
-- [ ] Editar y pasar la pantalla de Editar Datos al Drawer
+- [ ] Aplicar la funcionalidad de Editar y Eliminar Perfil
 
 ## Implementaciones
 - [x] Creación de Asociaciones
 - [x] Creación de Estudiantes
+- [ ] Modificación de Usuarios
 - [ ] Creación de Eventos
 - [ ] Eliminación de Eventos
 ## Encargados

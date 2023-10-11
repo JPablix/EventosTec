@@ -59,12 +59,6 @@ function DrawerNavigator() {
       {/* Pantallas que se muestran solo cuando el usuario no está autenticado */}
       {!authState.authenticated && (
         <>
-          <Drawer.Screen
-          name="UpdateUser"
-          component={UpdateUser}
-          options={{
-              headerShown: false,
-            }}/>
           <Drawer.Screen 
           name="Auth" 
           component={AuthStackScreen} 
@@ -76,12 +70,20 @@ function DrawerNavigator() {
       {/* Pantallas que se muestran cuando el usuario está autenticado */}
       {authState.authenticated && (
         <>
+          
           <Drawer.Screen 
           name="Inicio" 
           component={Inicio} 
           options={{
             drawerIcon: ({color}) => (<Ionicons name='home' size={23} color={color} />)
           }}/>
+          <Drawer.Screen
+          name="UpdateUser"
+          component={UpdateUser}
+          options={{
+            drawerItemStyle: {display: 'none'},
+          }}
+          />
           <Drawer.Screen 
           name="Búsqueda" 
           component={Busqueda} 
