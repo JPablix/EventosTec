@@ -45,7 +45,7 @@ const Register = () => {
 
 
   return (
-    <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
+    <KeyboardAvoidingView style={styles.keyboardAvoidingView} >
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.cardTitle}>Register</Text>
             <View style={styles.card}>

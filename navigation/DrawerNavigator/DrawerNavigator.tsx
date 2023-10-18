@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { drawerNavigatorOptions } from './DrawerNavigationOptions';
 
 // Screens
 import Inicio from '../../screens/Inicio/Inicio';
@@ -42,20 +43,9 @@ function DrawerNavigator() {
 
   return (
     <Drawer.Navigator 
-      drawerContent={props => 
-        <CustomDrawer {...props} 
-          userName={userName}
-        />
-        }
-      screenOptions={{
-        drawerActiveBackgroundColor: '#4298da',
-        drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: '#000',
-        drawerLabelStyle: {
-          marginLeft: -25, 
-          fontSize: 16,
-        },
-      }}>
+      drawerContent={props => <CustomDrawer {...props}userName={userName}/>}
+      screenOptions={drawerNavigatorOptions}
+      >
       {/* Pantallas que se muestran solo cuando el usuario no está autenticado */}
       {!authState.authenticated && (
         <>
@@ -70,37 +60,37 @@ function DrawerNavigator() {
       {/* Pantallas que se muestran cuando el usuario está autenticado */}
       {authState.authenticated && (
         <>
-          
           <Drawer.Screen 
           name="Inicio" 
           component={Inicio} 
           options={{
-            drawerIcon: ({color}) => (<Ionicons name='home' size={23} color={color} />)
+            drawerIcon: ({color}) => (<Ionicons name='home' size={24} color={color}/>),
           }}/>
           <Drawer.Screen
           name="UpdateUser"
           component={UpdateUser}
           options={{
             drawerItemStyle: {display: 'none'},
+            headerShown: false,
           }}
           />
           <Drawer.Screen 
           name="Búsqueda" 
           component={Busqueda} 
           options={{
-            drawerIcon: ({color}) => (<Ionicons name='search' size={23} color={color} />)
+            drawerIcon: ({color}) => (<Ionicons name='search' size={24} color={color}/>),
           }}/>
           <Drawer.Screen 
           name="Perfil" 
           component={Perfil} 
           options={{
-            drawerIcon: ({color}) => (<Ionicons name='person' size={23} color={color} />)
+            drawerIcon: ({color}) => (<Ionicons name='person' size={24} color={color}/>)
           }}/>
           <Drawer.Screen 
           name="About" 
           component={About} 
           options={{
-          drawerIcon: ({color}) => (<Ionicons name='information-circle' size={23} color={color} />)
+          drawerIcon: ({color}) => (<Ionicons name='information-circle' size={24} color={color}/>)
           }}/>
         </>
       )}

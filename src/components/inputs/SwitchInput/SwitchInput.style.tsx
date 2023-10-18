@@ -14,19 +14,19 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'oswaldBold',
-    color: Colors.secondary,
+    color: Colors.primary,
     textTransform: "uppercase",
   },
   trackActive: {
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.primary,
   },
   trackInactive: {
-    backgroundColor: Colors.grey,
+    backgroundColor: Colors.gray,
   },
   thumbActive: {
-    backgroundColor: Colors.grey,
+    backgroundColor: Colors.secondary,
   },
   thumbInactive: {
-    backgroundColor: Colors.blue,
+    backgroundColor: Colors.primary,
   },
 });

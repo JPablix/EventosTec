@@ -30,7 +30,7 @@ const CustomDrawer = (props) => {
                         </Text>
                         <View style={styles.followInfo}>
                             <Text style={styles.followNumber}>999</Text>
-                            <Ionicons name='person' size={14} color='#fff' />
+                            <Ionicons name='person' style={styles.miniIcons} />
                         </View>
                     </View>
                 </ImageBackground>    
@@ -42,7 +42,7 @@ const CustomDrawer = (props) => {
                 <Pressable onPress={() => {}} style={styles.footerPressable}>
                     <View 
                     style={styles.footerTextContainer}>
-                        <Ionicons name="share-social-outline" size={22} />
+                        <Ionicons name="share-social-outline" style={styles.bottomIcons} />
                         <Text style={styles.footerText}>Tell a friend</Text>
                     </View>
                 </Pressable>
@@ -54,7 +54,7 @@ const CustomDrawer = (props) => {
                     style={styles.footerPressable}>
                     <View 
                     style={styles.footerTextContainer}>
-                        <Ionicons name="exit-outline" size={22} />
+                        <Ionicons name="exit-outline" style={styles.bottomIcons} />
                         <Text style={styles.footerText}>Sign Out</Text>
                     </View>
                 </Pressable>
