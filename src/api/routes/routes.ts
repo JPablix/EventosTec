@@ -8,4 +8,6 @@ export const userRoutes = {
     updateProfileInformation: "https://campustecgatoapi-ccf0e8a36684.herokuapp.com/api/users/updateProfileInfo",
     getProfileInformation: "https://campustecgatoapi-ccf0e8a36684.herokuapp.com/api/profile",
     getOrganizationMembers: 'https://campustecgatoapi-ccf0e8a36684.herokuapp.com/api/organization/getMembers',
+    addOrganizationMember: 'https://campustecgatoapi-ccf0e8a36684.herokuapp.com/api/organization/addMember',
+    deleteOrganizationMember: 'https://campustecgatoapi-ccf0e8a36684.herokuapp.com/api/organization/deleteMember',
 }

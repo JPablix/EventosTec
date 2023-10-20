@@ -24,13 +24,46 @@ export const styles = StyleSheet.create({
     },
     keyboardAvoidingView: {
         flex: 1,
+        backgroundColor: Colors.primary,
     },
     inputTitle: {
         fontFamily: 'oswaldBold',
     },
+    inputContainer: {
+        display: 'flex',
+    },
     buttonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
+        marginTop: 10,
+    },
+    imageContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    imageButton: {
+        height: 150,
+        width: 150,
+        borderRadius: 75, 
+    },
+    profileImage: {
+        height: 150,
+        width: 150,
+        borderRadius: 75, 
+    },
+    addButton: {
+        width: 30, 
+        height: 30, 
+        borderRadius: 15,
+        bottom: 10, 
+        right: 10,
+        position: 'absolute',
+        backgroundColor: Colors.secondary,
+    },
+    addIcon: {
+        fontSize: 20,
+        color: Colors.white,
+        textAlign: 'center',
+        marginTop: 5,
     },
 });

@@ -19,10 +19,10 @@ const CustomDrawer = (props) => {
                 {...props}
                 contentContainerStyle={styles.profileContainer}>
                 <ImageBackground 
-                    source={require('../../../images/patternExample.png')} 
+                    source={require('../../../assets/patternExample.png')} 
                     style={styles.imageBackground}>
                     <Image 
-                        source={require('../../../images/profileDefault.png')} 
+                        source={require('../../../assets/profileDefault.png')} 
                         style={styles.profileImage} />
                     <View style={{}}>
                         <Text style={styles.userName}>

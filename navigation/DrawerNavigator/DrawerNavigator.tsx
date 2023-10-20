@@ -32,7 +32,7 @@ function AuthStackScreen() {
 
 function DrawerNavigator() {
   const Drawer = createDrawerNavigator();
-  const {authState} = useAuth();
+  const {authState, onLogout} = useAuth();
 
   //Datos del Usuario
   const userName = authState.data?.userName;
