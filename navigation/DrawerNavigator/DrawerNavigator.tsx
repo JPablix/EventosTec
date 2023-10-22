@@ -37,7 +37,6 @@ function DrawerNavigator() {
   //Datos del Usuario
   const userName = authState.data?.userName;
 
-
   useEffect(() => {
   }, [authState.authenticated]);
 

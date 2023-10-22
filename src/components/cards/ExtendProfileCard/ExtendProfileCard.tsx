@@ -1,30 +1,37 @@
 // Imports
 import { Text, View, Image} from 'react-native'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 // Styles
 import { styles } from './ExtendProfileCard.style'
 
-const ExtendProfileCard = () => {
+const ExtendProfileCard = (props) => {
     return (
       <View style={styles.card}>
         <View style={styles.profilePictureContainer}>
-            <Image style={styles.profilePicture} source={require('../../../images/profileDefault.png')} /> 
+            <Image style={styles.profilePicture} source={require('../../../assets/profileDefault.png')} /> 
         </View>
         <View style={styles.namesContainer}>
-            <Text style={styles.nickName}>NickName</Text>
-            <Text style={styles.userName}>UserName</Text>
+            <Text style={styles.nickName}>{props.userData.userNickname}</Text>
+            <Text style={styles.userName}>{props.userData.userRealName}</Text>
         </View>
         <View style={styles.infoContainer}>
             <Text style={styles.infoTitle}>Correo</Text>
-            <Text style={styles.infoText}>correo@estudiantec.cr</Text>
+            <Text style={styles.infoText}>{props.userData.userEmail}</Text>
             <Text style={styles.infoTitle}>Carnet</Text>
-            <Text style={styles.infoText}>202000000</Text>
+            <Text style={styles.infoText}>{props.userData.userCarne}</Text>
             <Text style={styles.infoTitle}>Número Celular</Text>
-            <Text style={styles.infoText}>+506 0000 0000</Text>
+            <Text style={styles.infoText}>{props.userData.userPhone}</Text>
             <Text style={styles.infoTitle}>Biografía</Text>
-            <Text style={styles.infoText}>Hola soy...</Text>
+            <Text style={styles.infoText}>{props.userData.description}</Text>
         </View>
       </View>
     )
 };
+
+//Props
+ExtendProfileCard.propTypes = {
+  userData: PropTypes.object,
+};
+
 export default ExtendProfileCard;

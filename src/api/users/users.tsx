@@ -16,7 +16,7 @@ export const updateProfileInfo = async (props: any) => {
     const response = await axios.put(updateProfileInformation, props);
     return response;
   } catch (error: any) {
-    return error.response;
+    return error.response.message;
   }
 };
 

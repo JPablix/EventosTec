@@ -14,21 +14,22 @@ import { useAuth } from "../../src/context/AuthContext";
 // Components
 import LineTextInput from "../../src/components/inputs/LineTextInput/LineTextInput";
 import IconTextButton from "../../src/components/buttons/IconTextButton/IconTextButton";
-import SwitchInput from "../../src/components/inputs/SwitchInput/SwitchInput";
 import FontAwesome from "@expo/vector-icons/build/FontAwesome";
 
-const UpdateUser = () => {
+const UpdateUser = ({ route }) => {
+
     const Buffer = require("buffer").Buffer;
+    
     const [data, setData] = useState<any>({
         name: "",
-        carnet: "",
+        carne: "",
         phone: "",
         description: "",
         profilePicture: "",
     });
 
     // Auth Context
-    const { onRegister, onLogin } = useAuth();
+    const {authState, onRegister, onLogin } = useAuth();
     // Navigation
     const navigation = useNavigation();
 
@@ -58,7 +59,7 @@ const UpdateUser = () => {
 
     const handleUpdateProfileInfo = async () => {
         const response = await updateProfileInfo(data);
-        console.log({ ...response.data, code: response.status }, "fade");
+        console.log({ ...response.data, code: response.status },);
       };
     return (
         <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
@@ -80,35 +81,35 @@ const UpdateUser = () => {
                                 style={styles.profileImage}
                             />
                             <View style={styles.addButton}>
-                                <FontAwesome 
-                                name="edit" 
-                                style={styles.addIcon}/>
+                                <FontAwesome name="edit" style={styles.addIcon}/>
                             </View>
                         </Pressable>
                     </View>
                     <View style={styles.inputContainer}>
                         <Text style={styles.inputTitle}>Nombre Completo</Text>
                         <LineTextInput
-                                value={data.name}
-                                onChangeText={(text: string) => setData({ ...data, name: text })}
-                                placeholder="Nombre como sale en la cédula"
-                            />
+                        value={data.name}
+                        onChangeText={(text: string) => setData({ ...data, name: text })}
+                        placeholder="Nombre como sale en la cédula"
+                        />
                         <Text style={styles.inputTitle}>Carnet</Text>
                         <LineTextInput
-                            value={data.carnet}
-                            onChangeText={(text: string) => setData({ ...data, carnet: text })}
-                            placeholder="Carnet Estudiantil"
-                            />
+                        value={data.carne}
+                        onChangeText={(text: string) => setData({ ...data, carne: text })}
+                        placeholder="Carnet Estudiantil"
+                        />
                         <Text style={styles.inputTitle}>Número Celular</Text>
                         <LineTextInput
-                                value={data.phone}
-                                onChangeText={(text: string) => setData({ ...data, phone: text })}
-                                placeholder="Número de celular funcional"/>
+                        value={data.phone}
+                        onChangeText={(text: string) => setData({ ...data, phone: text })}
+                        placeholder="Número de celular funcional"
+                        />
                         <Text style={styles.inputTitle}>Biografía</Text>
                         <LineTextInput
-                                value={data.description}
-                                onChangeText={(text: string) => setData({ ...data, description: text })}
-                                placeholder="Hola soy..."/>
+                        value={data.description}
+                        onChangeText={(text: string) => setData({ ...data, description: text })}
+                        placeholder="Hola soy..."
+                        />
                     </View>
                     <View style={styles.buttonsContainer}>
                         <IconTextButton
