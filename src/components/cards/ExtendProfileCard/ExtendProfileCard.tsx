@@ -9,7 +9,7 @@ const ExtendProfileCard = (props) => {
     return (
       <View style={styles.card}>
         <View style={styles.profilePictureContainer}>
-            <Image style={styles.profilePicture} source={require('../../../assets/profileDefault.png')} /> 
+            <Image style={styles.profilePicture} source={props.imageSource} /> 
         </View>
         <View style={styles.namesContainer}>
             <Text style={styles.nickName}>{props.userData.userNickname}</Text>
@@ -32,6 +32,7 @@ const ExtendProfileCard = (props) => {
 //Props
 ExtendProfileCard.propTypes = {
   userData: PropTypes.object,
+  imageSource: PropTypes.any,
 };
 
 export default ExtendProfileCard;

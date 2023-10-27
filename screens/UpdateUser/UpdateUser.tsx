@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { View, Text, ScrollView, KeyboardAvoidingView, TextInput, Pressable, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { updateProfileInfo } from "../../src/api/users/users";
+import { updateProfile } from "../../src/api/users/users";
 import * as ImagePicker from "expo-image-picker";
 
 // Styles
@@ -17,22 +17,22 @@ import IconTextButton from "../../src/components/buttons/IconTextButton/IconText
 import FontAwesome from "@expo/vector-icons/build/FontAwesome";
 
 const UpdateUser = ({ route }) => {
-
+    // Buffer
     const Buffer = require("buffer").Buffer;
-    
+
+    // Data
     const [data, setData] = useState<any>({
         name: "",
         carne: "",
         phone: "",
+        carrer: "",
         description: "",
         profilePicture: "",
     });
-
     // Auth Context
-    const {authState, onRegister, onLogin } = useAuth();
+    const {authState, onUpdateProfile } = useAuth();
     // Navigation
     const navigation = useNavigation();
-
     // Image Picker
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -50,17 +50,18 @@ const UpdateUser = ({ route }) => {
             reader.readAsDataURL(blob);
             reader.onloadend = async () => {
                 // @ts-ignore
-                const base64data = reader.result.split(",")[1];
-                const binaryData = Buffer.from(base64data, "base64");
-                setData({ ...data, profilePicture: binaryData });
+                // const base64data = reader.result.split(",")[1];
+                // const binaryData = Buffer.from(base64data, "base64");
+                // setData({ ...data, profilePicture: binaryData });
+                const base64Image = reader.result;  // Guardar la cadena completa
+                setData({ ...data, profilePicture: base64Image });
             };
         }
     };
-
     const handleUpdateProfileInfo = async () => {
-        const response = await updateProfileInfo(data);
-        console.log({ ...response.data, code: response.status },);
-      };
+        const response = await updateProfile(data);
+    };
+    
     return (
         <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
             <ScrollView contentContainerStyle={styles.container}>
@@ -122,6 +123,7 @@ const UpdateUser = ({ route }) => {
                         text="Confirmar " 
                         onPress={() => {
                             handleUpdateProfileInfo();
+                            onUpdateProfile();
                             navigation.navigate("Perfil" as never);
                         }}
                         iconName="check"

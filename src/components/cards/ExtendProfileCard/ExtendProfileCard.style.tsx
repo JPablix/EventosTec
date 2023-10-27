@@ -30,7 +30,7 @@ export const styles = StyleSheet.create(
         height: 100,
         resizeMode: 'contain',
         marginBottom: 20,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.gray,
         borderRadius: 100,
     },
     namesContainer: {

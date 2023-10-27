@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
-import { authRoutes } from "../api/routes/routes";
+import { authRoutes, userRoutes } from "../api/routes/routes";
 interface AuthProps {
   authState: { token: string | null; authenticated: boolean | null; data: any };
   onRegister: (
@@ -13,6 +13,8 @@ interface AuthProps {
   ) => Promise<boolean>;
   onLogin: (email: string, password: string) => Promise<void>;
   onLogout: () => Promise<void>;
+  onUpdateProfile: () => Promise<void>;
+  onGetProfile: () => Promise<any>;
 }
 
 const AuthContext = createContext<AuthProps>({} as AuthProps);
@@ -22,7 +24,8 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: any) => {
-  const { loginRoute, logoutRoute, registerRoute } = authRoutes;
+  const { loginRoute, logoutRoute, registerRoute} = authRoutes;
+  const { getProfileRoute } = userRoutes;
   const [authState, setAuthState] = useState<{
     token: string | null;
     authenticated: boolean | null;
@@ -34,22 +37,30 @@ export const AuthProvider = ({ children }: any) => {
   });
 
   useEffect(() => {
-    const loadToken = async () => {
-      const token = await SecureStore.getItemAsync("token");
+    const setupAxiosHeaders = async () => {
+      const storedToken = await SecureStore.getItemAsync("token");
       const data = await SecureStore.getItemAsync("user");
-      console.log("token is:", token);
-      console.log("data is:", data);
-      if (token) {
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      console.log("token is:", storedToken);
+      if (storedToken) {
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${storedToken}`;
         setAuthState({
-          token: token,
+          token: storedToken,
           authenticated: true,
           data: data ? JSON.parse(data) : null,
         });
+      } else {
+        delete axios.defaults.headers.common["Authorization"];
+        setAuthState({
+          token: null,
+          authenticated: false,
+          data: null,
+        });
       }
     };
-    loadToken();
-  }, []);
+    setupAxiosHeaders();
+    }, []);
 
   const onRegister = async (
     email: string,
@@ -111,10 +122,25 @@ export const AuthProvider = ({ children }: any) => {
     });
   };
 
+  const onUpdateProfile = async () => {
+    const profile = await axios.get(getProfileRoute);
+    console.log("USUARIO VIEJO", await SecureStore.getItemAsync("user"));
+    await SecureStore.setItemAsync("user", JSON.stringify(profile.data));
+    console.log("USUARIO NUEVO", await SecureStore.getItemAsync("user"));
+  }
+  
+  const onGetProfile = async () => {
+    const data = await SecureStore.getItemAsync("user");
+    return data ? JSON.parse(data) : null;
+  }
+  
+
   const value = {
     onRegister,
-    onLogin,
+    onLogin,  
     onLogout,
+    onUpdateProfile,
+    onGetProfile,
     authState,
   };
   return (
