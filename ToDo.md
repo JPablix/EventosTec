@@ -1,11 +1,15 @@
 # Lista de Pendientes
-- [X] Aplicar la funcionalidad de Editar Perfil
-- [ ] Hacer que Perfil tome los datos reales del usuario
-- [X] Hacer que Editar Perfil refleje los datos en Perfil
+- [ ] Arreglar el subir imagen de perfil
 
+- [ ] Crear card de Eventos
+- [ ] Crear pantalla de edición y creación de eventos
+- [ ] Crear card de Actividades
+- [ ] Crear card de Asociaciones
+- [ ] Crear card de Estudiantes
+- [ ] Crear card de 
 
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
-- [ ] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
+- [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
 - [ ] Crear lo necesario para agregar usuarios a las asociaciones
 - [ ] Crear lo necesario para agregar eventos a las asociaciones
 
