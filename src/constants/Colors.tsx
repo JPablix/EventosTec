@@ -6,9 +6,5 @@ export const Colors = {
     darkGrey: '#A9A9A9',
     black: '#000000',
     white: '#FFFFFF',
-
-    blue: '#141237',
-    yellow: '#ffc852',
-    cyan: '#0c73c4',
-    aqua: '#57c9ca',
+    error: '#FF0000',
 }

@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 import { authRoutes, userRoutes } from "../api/routes/routes";
+import { useErrorOutput } from "./ErrorOutput";
 interface AuthProps {
   authState: { token: string | null; authenticated: boolean | null; data: any };
   onRegister: (
@@ -24,6 +25,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: any) => {
+  const { handleError } = useErrorOutput();
   const { loginRoute, logoutRoute, registerRoute} = authRoutes;
   const { getProfileRoute } = userRoutes;
   const [authState, setAuthState] = useState<{
@@ -79,7 +81,7 @@ export const AuthProvider = ({ children }: any) => {
       console.log("En try onRegister",result.data)
       return true;
     } catch (error: any) {
-      console.log("En catch onRegister",{ ...error.response.data, code: error.response.status })
+      handleError(error.response.data);
       return false;
     }
   };
@@ -104,9 +106,7 @@ export const AuthProvider = ({ children }: any) => {
       await SecureStore.setItemAsync("user", JSON.stringify(result.data));
       return result;
     } catch (error: any) {
-      console.log(
-        { ...error.response.data, code: error.response.status }
-      );
+      handleError(error.response.data);
     }
   };
 
@@ -127,6 +127,7 @@ export const AuthProvider = ({ children }: any) => {
     console.log("USUARIO VIEJO", await SecureStore.getItemAsync("user"));
     await SecureStore.setItemAsync("user", JSON.stringify(profile.data));
     console.log("USUARIO NUEVO", await SecureStore.getItemAsync("user"));
+    handleError("User data updated");
   }
   
   const onGetProfile = async () => {
