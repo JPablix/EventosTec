@@ -8,7 +8,8 @@ export const styles = StyleSheet.create(
         display: "flex",
         flexDirection: 'row',  
         alignItems: 'center',  
-        padding: 20,     
+        padding: 20,
+        marginBottom: 20,
         borderRadius: 10,
         width: '80%',
         elevation: 10,
@@ -18,6 +19,7 @@ export const styles = StyleSheet.create(
     profilePictureContainer: {
         display: "flex",
         alignItems: "center",
+        justifyContent: 'center',
       },
     profilePicture: {
         width: 100,
@@ -41,7 +43,6 @@ export const styles = StyleSheet.create(
         flex: 1,
         justifyContent: 'center',
         paddingLeft: 30, 
-
     },
     infoTitle: {
         fontFamily: 'oswaldBold',

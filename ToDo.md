@@ -5,7 +5,7 @@
 - [ ] Crear pantalla de edición y creación de eventos
 - [ ] Crear card de Actividades
 - [ ] Crear card de Asociaciones
-- [ ] Crear card de Estudiantes
+- [X] Crear card de Estudiantes
 - [ ] Crear card de 
 
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
