@@ -49,11 +49,11 @@ const Busqueda = ({ navigation }) => {
           imageSource={require("../../src/assets/profileDefault.png")}/>
         <MiniEventCard 
           title="No quería tomar, pero..." 
+          category="Fiesta"
           description="Esta es la descripción de un evento"
           date="09 de Noviembre"
           time="20:00"
           location="Bar Einstein"
-          pictureSource={require("../../src/assets/eventDefault.png")}
           onCardPress={() => handleCardPress(activityList)}/>
         <MiniProfileCard 
           nickName="Mela" 
@@ -62,6 +62,7 @@ const Busqueda = ({ navigation }) => {
           carnet="2022097546"/>
         <MiniEventCard 
           title= "Fiesta de cumpleaños"
+          category="Fiesta"
           description="Esta es la descripción de un evento"
           date="20 de Septiembre"
           time="18:00"

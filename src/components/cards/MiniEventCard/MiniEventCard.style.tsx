@@ -52,6 +52,14 @@ export const styles = StyleSheet.create(
     datetimeInfo: {
         display: "flex",
         flexDirection: "column",
-    }
+    },
+    category: {
+        fontFamily: 'oswaldBold',
+        color: Colors.gray,
+        fontSize: 20,
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+    },
 }
 )

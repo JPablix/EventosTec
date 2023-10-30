@@ -9,7 +9,8 @@ const MiniEventCard = (props) => {
     return (
         <View style={styles.card}>
             <View style={styles.pictureContainer}>
-                <Image style={styles.pictures} source={props.pictureSource ? props.pictureSource : require("../../../assets/eventDefault.png")} /> 
+                <Image style={styles.pictures} source={props.pictureSource ? props.pictureSource : require("../../../assets/eventDefault.png")} />
+                <Text style={styles.category}>{props.category}</Text>
             </View>
         <Pressable onPress={props.onCardPress}>
             <View style={styles.infoContainer}>
@@ -36,6 +37,7 @@ const MiniEventCard = (props) => {
 MiniEventCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  category: PropTypes.string,
   date: PropTypes.string,
   time: PropTypes.string,
   location: PropTypes.string,

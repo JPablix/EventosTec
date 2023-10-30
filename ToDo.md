@@ -1,10 +1,12 @@
 # Lista de Pendientes
 - [ ] Arreglar el subir imagen de perfil
 
-- [ ] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
+- [X] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
 
-- [X] Crear barra de Busqueda (importar de la app personal)
+- [ ] Dejar la pantalla de Creación de Eventos Funcional
+
 - [ ] Crear pantalla de edición y creación de eventos
+- [X] Crear barra de Busqueda (importar de la app personal)
 - [X] Crear card de Eventos
 - [X] Crear card de Actividades
 - [X] Crear card de Asociaciones
@@ -14,7 +16,6 @@
 - [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
 - [ ] Crear lo necesario para agregar usuarios a las asociaciones
 - [ ] Crear lo necesario para agregar eventos a las asociaciones
-
 
 ## Implementaciones
 
