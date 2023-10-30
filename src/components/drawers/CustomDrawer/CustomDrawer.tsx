@@ -35,7 +35,7 @@ const CustomDrawer = (props) => {
                     </View>
                 </ImageBackground>    
                 <View style={styles.drawerItemContainer}>
-                    <DrawerItemList {...props} />
+                    <DrawerItemList navigation={navigation} {...props} />
                 </View>
             </DrawerContentScrollView>
             <View style={styles.footerContainer}>

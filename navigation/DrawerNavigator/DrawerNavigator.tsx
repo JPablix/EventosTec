@@ -13,6 +13,7 @@ import About from '../../screens/About/About';
 import Login from '../../screens/Login/Login';
 import Register from '../../screens/Register/Register';
 import UpdateUser from '../../screens/UpdateUser/UpdateUser';
+import Activities from '../../screens/Activities/Activities';
 
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
@@ -68,6 +69,14 @@ function DrawerNavigator() {
           <Drawer.Screen
           name="UpdateUser"
           component={UpdateUser}
+          options={{
+            drawerItemStyle: {display: 'none'},
+            headerShown: false,
+          }}
+          />
+          <Drawer.Screen
+          name="Activities"
+          component={Activities}
           options={{
             drawerItemStyle: {display: 'none'},
             headerShown: false,

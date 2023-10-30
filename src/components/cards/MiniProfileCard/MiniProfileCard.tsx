@@ -9,7 +9,7 @@ const MiniProfileCard = (props) => {
     return (
       <View style={styles.card}>
         <View style={styles.profilePictureContainer}>
-            <Image style={styles.profilePicture} source={props.imageSource} /> 
+            <Image style={styles.profilePicture} source={props.imageSource ? props.imageSource : require("../../../assets/profileDefault.png")} /> 
         </View>
         <View style={styles.infoContainer}>
             <Text style={styles.nickName}>{props.nickName}</Text>
