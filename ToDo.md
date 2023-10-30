@@ -3,12 +3,12 @@
 
 - [ ] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
 
-- [X] Crear card de Eventos
+- [X] Crear barra de Busqueda (importar de la app personal)
 - [ ] Crear pantalla de edición y creación de eventos
+- [X] Crear card de Eventos
 - [X] Crear card de Actividades
 - [X] Crear card de Asociaciones
 - [X] Crear card de Estudiantes
-- [ ] Crear barra de Busqueda (importar de la app personal)
 
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
 - [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
