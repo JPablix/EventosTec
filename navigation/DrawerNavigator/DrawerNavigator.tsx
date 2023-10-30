@@ -14,7 +14,7 @@ import Login from '../../screens/Login/Login';
 import Register from '../../screens/Register/Register';
 import UpdateUser from '../../screens/UpdateUser/UpdateUser';
 import Activities from '../../screens/Activities/Activities';
-
+import EventCreator from '../../screens/Event/EventCreator/EventCreator';
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
 
@@ -77,6 +77,14 @@ function DrawerNavigator() {
           <Drawer.Screen
           name="Activities"
           component={Activities}
+          options={{
+            drawerItemStyle: {display: 'none'},
+            headerShown: false,
+          }}
+          />
+          <Drawer.Screen
+          name="EventCreator"
+          component={EventCreator}
           options={{
             drawerItemStyle: {display: 'none'},
             headerShown: false,
