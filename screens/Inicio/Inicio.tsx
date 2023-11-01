@@ -11,11 +11,13 @@ const Inicio = () => {
   return (
     <View style={styles.container}>
       <Text>Inicio</Text>
-      <IconTextButton
-        text="Crear evento"
-        iconName="plus"
-        onPress={() => navigation.navigate("EventCreator" as never)}
-      />
+      <View>
+        <IconTextButton
+          text="Crear evento"
+          iconName="plus"
+          onPress={() => navigation.navigate("EventCreator" as never)}
+        />
+      </View>
     </View>
   );
 };

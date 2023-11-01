@@ -10,14 +10,23 @@ import LineTextInput from "../../../src/components/inputs/LineTextInput/LineText
 import { useNavigation } from "@react-navigation/native";
 import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
 import DateTimeInput from "../../../src/components/inputs/DateTimeInput/DateTimeInput";
+import NumericInput from "../../../src/components/inputs/NumericInput/NumericInput";
+import { useErrorOutput } from "../../../src/context/ErrorOutput";
+import { addEvent } from "../../../src/api/events/events";
 
 const EventCreator = ({ route }) => {
+    const { handleError } = useErrorOutput();
     const navigation = useNavigation();
     const nada = "";
-
+    // Manejo de fechas
     const handleDate = (date: string | undefined) => {
         return moment(date).locale("es").format("LLLL");
     };
+    // Manejo de eventos
+    const handleCreateEvent = async () => {
+        const response = await addEvent(data);
+        handleError(response.data);
+      };
 
     const [data, setData] = useState<any>({
         title: "",
@@ -54,6 +63,13 @@ const EventCreator = ({ route }) => {
                     onChangeText={(text: string) => setData({ ...data, location: text })}
                     placeholder="Lugar en el que se realizará"
                     />
+                    <Text style={styles.inputTitle}>Categoría del Evento</Text>
+                    <LineTextInput
+                    value={data.categoryName}
+                    onChangeText={(text: string) => setData({ ...data, categoryName: text })}
+                    placeholder="Categoría a la que pertenece"
+                    />
+                </View>
                     <Text style={styles.inputTitle}>Fecha y Hora de Inicio</Text>
                     <Text style={styles.infoText}>{handleDate(data.startTime.toString())}</Text>
                     <View style={styles.datetimeContainer}>
@@ -86,7 +102,24 @@ const EventCreator = ({ route }) => {
                         setDatetime={(date: Date) => setData({ ...data, endTime: date })}
                         />
                     </View>
-                </View>
+                    <Text style={styles.inputTitle}>Capacidad de participantes</Text>
+                    <NumericInput
+                        min={1}
+                        max={15}
+                        count={data.capacity}
+                        setCount={(capacity: number) =>
+                        setData({ ...data, capacity: capacity })
+                        }
+                    />
+                    <Text style={styles.inputTitle}>Colaboradores necesarios</Text>
+                    <NumericInput
+                        min={1}
+                        max={15}
+                        count={data.requiredCollaborators}
+                        setCount={(requiredCollaborators: number) =>
+                        setData({ ...data, requiredCollaborators: requiredCollaborators })
+                        }
+                    />
                 <View style={styles.buttonsContainer}>
                     <IconTextButton
                     text = "Cancelar "
@@ -97,8 +130,8 @@ const EventCreator = ({ route }) => {
                     <IconTextButton 
                     text="Confirmar " 
                     onPress={() => {
-                        
-                        navigation.navigate("Perfil" as never);
+                        handleCreateEvent(),
+                        navigation.navigate("Inicio" as never);
                     }}
                     iconName="check"
                     iconPosition="right"

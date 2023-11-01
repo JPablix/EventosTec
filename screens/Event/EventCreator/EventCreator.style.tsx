@@ -9,17 +9,15 @@ export const styles = StyleSheet.create({
         marginBottom: 20,
     },
     container: {
-        flex: 1,
+        flexGrow: 1,
         alignItems: "center",
-        justifyContent: "center",
+        //justifyContent: "center",
         backgroundColor: Colors.primary,
     },
-    itemContainer: {
-        flexGrow: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginVertical: 10,
-      },
+    keyboardAvoidingView: {
+        flex: 1,
+        backgroundColor: Colors.primary,
+    },
     card: {
         padding: 20,
         borderRadius: 10,
@@ -28,10 +26,12 @@ export const styles = StyleSheet.create({
         shadowColor: Colors.black,
         backgroundColor: Colors.white,
     },
-    keyboardAvoidingView: {
-        flex: 1,
-        backgroundColor: Colors.primary,
-    },
+    itemContainer: {
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 10,
+      },
     inputTitle: {
         fontFamily: 'oswaldBold',
     },

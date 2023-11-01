@@ -17,12 +17,16 @@ export const userRoutes = {
 export const dataRoutes = {
   getCarrersRoute: `${baseRoute}/data/carrers`,
   getEventCategoriesRoute: `${baseRoute}/data/event/categories`,
+  getEventCategoryRoute: `${baseRoute}/data/event/category`,
 };
 
 export const eventRoutes = {
   getEventsRoute: `${baseRoute}/events`,
   getOrganizationEventsRoute: `${baseRoute}/organization/events`,
   addEventRoute: `${baseRoute}/organization/event/create`,
+  updateEventRoute: `${baseRoute}/organization/event/update`,
+  deleteEventRoute: `${baseRoute}/organization/event/delete`,
   getUserEventsRoute: `${baseRoute}/user/events`,
   addUserEventJoinRoute: `${baseRoute}/user/event/join`,
+  deleteUserEventLeaveRoute: `${baseRoute}/user/event/leave`,
 };
