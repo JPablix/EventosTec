@@ -1,5 +1,5 @@
 # Lista de Pendientes
-- [ ] Dejar la pantalla de Creación de Eventos Funcional
+- [X] Dejar la pantalla de Creación de Eventos Funcional
 - [ ] Hacer la barra de busqueda funcional
 
 - [X] Arreglar el subir imagen de perfil
@@ -16,23 +16,23 @@
 - [ ] Crear lo necesario para agregar usuarios a las asociaciones
 - [ ] Crear lo necesario para agregar eventos a las asociaciones
 
-## Implementaciones
+## Implementaciones                         ## Pendientes
 
-- [ ] Crear evento
-- [ ] Establecer cantidad de colaboradores
-- [X] Registrar estudiante
-- [X] Registrar asociación
-- [ ] Buscar evento
-- [ ] Evaluar evento
-- [ ] Inscribirse a evento
-- [ ] Programar actividad
-- [ ] Asignación de colaboradores
-- [ ] Enviar QR entrada
-- [ ] Realizar propuesta de evento
-- [ ] Eliminar o cancelar evento
-- [ ] Notificar cancelación de evento
-- [ ] Notificar colaborador
-- [ ] Generar informe de evento
+- [ ] CRUD de asociaciones 10               * Eliminación de asociaciones
+- [ ] Asignación de colaboradores 5         * Pendiente
+- [X] Crear eventos 7                       
+- [ ] Programar actividades 6               * Pendiente
+- [X] Establecer control de capacidad 5     
+- [ ] Gestionar el control de accesos 5     * Pendiente
+
+- [X] Registro de estudiantes 5             * Pendiente  
+- [ ] Visualizar calendario de eventos 7    * Pendiente
+- [ ] Inscripción a eventos 8               * Pendiente
+- [ ] Formulario de propuestas 8            * Pendiente
+
+- [ ] Informes y estadísticas 8             * Pendiente
+- [ ] Encuestas y evaluaciones 8            * Pendiente
+- [ ] Notificaciones automáticas 8          * Pendiente
 
 ## Encargados
 ...
