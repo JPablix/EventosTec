@@ -1,16 +1,15 @@
 # Lista de Pendientes
-- [ ] Arreglar el subir imagen de perfil
-
-- [X] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
-
 - [ ] Dejar la pantalla de Creación de Eventos Funcional
+- [ ] Hacer la barra de busqueda funcional
 
-- [ ] Crear pantalla de edición y creación de eventos
+- [X] Arreglar el subir imagen de perfil
+- [X] Crear pantalla de edición y creación de eventos
 - [X] Crear barra de Busqueda (importar de la app personal)
 - [X] Crear card de Eventos
 - [X] Crear card de Actividades
 - [X] Crear card de Asociaciones
 - [X] Crear card de Estudiantes
+- [X] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
 
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
 - [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.

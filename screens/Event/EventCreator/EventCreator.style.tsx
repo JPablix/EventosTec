@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: Colors.primary,
     },
+    itemContainer: {
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginVertical: 10,
+      },
     card: {
         padding: 20,
         borderRadius: 10,
@@ -28,6 +34,10 @@ export const styles = StyleSheet.create({
     },
     inputTitle: {
         fontFamily: 'oswaldBold',
+    },
+    infoText: {
+        fontFamily: 'oswaldRegular',
+        color: Colors.darkGrey,
     },
     inputContainer: {
         display: 'flex',
@@ -65,5 +75,10 @@ export const styles = StyleSheet.create({
         color: Colors.white,
         textAlign: 'center',
         marginTop: 5,
+    },
+    datetimeContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
     },
 });
