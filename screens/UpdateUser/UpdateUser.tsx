@@ -35,27 +35,25 @@ const UpdateUser = ({ route }) => {
     const navigation = useNavigation();
     // Image Picker
     const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [4, 3],
             quality: 1,
-            });
+        });
             if (!result.canceled) {
-            const imageUri = result.assets[0].uri;
-            const response = await fetch(imageUri);
-            const blob = await response.blob();
-        
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = async () => {
-                // @ts-ignore
-                // const base64data = reader.result.split(",")[1];
-                // const binaryData = Buffer.from(base64data, "base64");
-                // setData({ ...data, profilePicture: binaryData });
-                const base64Image = reader.result;  // Guardar la cadena completa
-                setData({ ...data, profilePicture: base64Image });
-            };
+                const imageUri = result.assets[0].uri;
+                const response = await fetch(imageUri);
+                const blob = await response.blob();
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = async () => {
+                    // @ts-ignore
+                    const base64data = reader.result.split(",")[1];
+                    const binaryData = Buffer.from(base64data, "base64");
+                    setData({ ...data, profilePicture: binaryData });
+                };
         }
     };
     const handleUpdateProfileInfo = async () => {

@@ -18,7 +18,7 @@ const Inicio = () => {
   const {authState, onGetProfile} = useAuth();
   // Navigation
   const navigation = useNavigation();
-
+  // Buffer for image
   const Buffer = require("buffer").Buffer;
 
   const [userData, setUserData] = useState({
@@ -47,7 +47,7 @@ const Inicio = () => {
   useFocusEffect(
     useCallback(() => {
       updateProfileInfo();
-      console.log("------Se ha cambiado el estado de userData");
+      console.log("Profile updated");
     }, [])
   );
   
@@ -55,11 +55,11 @@ const Inicio = () => {
     <View style={styles.container}>
       <ExtendProfileCard 
         userData={userData} 
-        imageSource={
-          userData.profilePicture.length > 0
-            ? { uri: `data:image/png;base64,${userData.profilePicture}` }
-            : require("../../src/assets/profileDefault.png")
-        }
+        imageSource={{
+          uri: `data:image/png;base64,${Buffer.from(
+            userData.profilePicture
+          ).toString("base64")}`,
+        }}
       />
       <IconTextButton
         text="Editar Perfil"
