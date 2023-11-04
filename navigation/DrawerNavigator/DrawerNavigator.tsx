@@ -16,6 +16,7 @@ import UpdateUser from '../../screens/UpdateUser/UpdateUser';
 import Activities from '../../screens/Activities/Activities';
 import EventCreator from '../../screens/Event/EventCreator/EventCreator';
 import AllEvents from '../../screens/Event/AllEvents/AllEvents';
+import OwnEvents from '../../screens/Event/OwnEvents/OwnEvents';
 
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
@@ -80,7 +81,8 @@ function DrawerNavigator() {
           component={Inicio} 
           options={{
             drawerIcon: ({color}) => (<Ionicons name='home' size={24} color={color}/>),
-          }}/>
+          }}
+          />
           {/* Pantallas que son invocadas por otras*/}
           <Drawer.Screen
           name="UpdateUser"
@@ -128,7 +130,12 @@ function DrawerNavigator() {
           {/* Pantallas que se muestran cuando el usuario es organización */}
           {organization && (
             <>
-
+              <Drawer.Screen 
+              name="Eventos Creados" 
+              component={OwnEvents} 
+              options={{
+              drawerIcon: ({color}) => (<Ionicons name='ios-calendar-sharp' size={24} color={color}/>)
+              }}/>
             </>
           )}
           <Drawer.Screen 

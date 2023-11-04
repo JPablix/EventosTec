@@ -2,24 +2,28 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, ScrollView } from "react-native";
-import { getAllEvents } from "../../../src/api/events/events";
 import { getEventCategory } from "../../../src/api/api/data";
 // Styles
-import { styles } from "./AllEvents.style";
+import { styles } from "./OwnEvents.style";
 // Components
 import MiniEventCard from "../../../src/components/cards/MiniEventCard/MiniEventCard";
 import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 
-const AllEvents = () => {
+import { getOrganizationEvents } from "../../../src/api/events/events";
+
+
+const OwnEvents = () => {
+  // Navigation
   const navigation = useNavigation();
 
-  const [events, setEvents] = useState([]); 
+  // Events
+  const [events, setEvents] = useState([]);
   const [searchPrompt, setSearchPrompt] = useState('');
 
   const fetchAndSetEvents = async () => {
     try {
-      const eventsResponse = await getAllEvents();
+      const eventsResponse = await getOrganizationEvents();
       let eventsData = eventsResponse.data;
 
       if (searchPrompt) {
@@ -54,32 +58,40 @@ const AllEvents = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.itemContainer}>
-        <LineTextInput
-          value={searchPrompt}
-          placeholder="Buscar..."
-          icon="search"
-          deleteButton={true}
-          onChangeText={setSearchPrompt} 
-        />
-      </View>
-      {events.length > 0 ? (
-        <ScrollView contentContainerStyle={styles.itemContainer}>
-          {events.map((event) => (
-            <MiniEventCard 
-              key={event.id}
-              {...event} 
-              category={event.categoryName}
-            />
-          ))}
-        </ScrollView>
-      ) : (
-        <View style={styles.adviceContainer}>
-          <Text style={styles.noEvents}>No hay eventos disponibles.</Text>
-        </View>
-      )}
+    <View style={styles.itemContainer}>
+      <LineTextInput
+        value={searchPrompt}
+        placeholder="Buscar..."
+        icon="search"
+        deleteButton={true}
+        onChangeText={setSearchPrompt} 
+      />
     </View>
-  );
+    {events.length > 0 ? (
+      <ScrollView contentContainerStyle={styles.itemContainer}>
+        {events.map((event) => (
+          <MiniEventCard 
+            key={event.id}
+            {...event} 
+            category={event.categoryName}
+          />
+        ))}
+      </ScrollView>
+    ) : (
+      <View style={styles.adviceContainer}>
+        <Text style={styles.noEvents}>No hay eventos disponibles.</Text>
+      </View>
+    )}
+    <View style={styles.addEvent}>
+      <IconTextButton
+        text="Crear Evento"
+        iconName="plus"
+        iconPosition="right"
+        onPress={() => navigation.navigate("EventCreator" as never)}
+      />
+    </View>
+  </View>
+);
 };
 
-export default AllEvents;
+export default OwnEvents;
