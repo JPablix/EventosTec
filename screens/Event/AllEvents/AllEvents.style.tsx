@@ -4,6 +4,8 @@ import { Colors } from '../../../src/constants/Colors'
 export const styles = StyleSheet.create({
   container: {
     display: "flex",
+    height: "100%",
+    width: "100%",
   },
   itemContainer: {
     flexGrow: 1,
@@ -12,7 +14,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
   },
   
-  inputTitle: {
+  noEvents: {
     fontFamily: 'oswaldBold',
   },
   cardTitle: {
@@ -31,5 +33,21 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
+  },
+  button: {
+    backgroundColor: Colors.primary,
+  },
+  addEvent: {
+    fontFamily: 'oswaldBold',
+    color: Colors.gray,
+    fontSize: 20,
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
+  adviceContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

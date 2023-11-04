@@ -123,7 +123,7 @@ const EventCreator = ({ route }) => {
                 <View style={styles.buttonsContainer}>
                     <IconTextButton
                     text = "Cancelar "
-                    onPress={() => navigation.navigate("Inicio" as never)}
+                    onPress={() => navigation.navigate("Eventos" as never)}
                     iconName="close"
                     iconPosition="right"
                     />
@@ -131,7 +131,7 @@ const EventCreator = ({ route }) => {
                     text="Confirmar " 
                     onPress={() => {
                         handleCreateEvent(),
-                        navigation.navigate("Inicio" as never);
+                        navigation.navigate("Eventos" as never);
                     }}
                     iconName="check"
                     iconPosition="right"

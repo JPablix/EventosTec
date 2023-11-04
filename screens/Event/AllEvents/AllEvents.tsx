@@ -8,6 +8,8 @@ import { getEventCategory } from "../../../src/api/api/data";
 import { styles } from "./AllEvents.style";
 // Components
 import MiniEventCard from "../../../src/components/cards/MiniEventCard/MiniEventCard";
+import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
+import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 
 const AllEvents = () => {
   // Hook de navegación de React Navigation
@@ -46,16 +48,25 @@ const AllEvents = () => {
       console.error('Error fetching events and categories:', error);
     }
   };
-
-  // Efecto para cargar los eventos cuando el componente gana foco
   useFocusEffect(
     useCallback(() => {
       getEventsAndCategories();
     }, [])
   );
+  //Parametros de busqueda
+  const [searchPrompt, setsearchPrompt] = useState('');
 
   return (
     <View style={styles.container}>
+      <View style={styles.itemContainer}>
+        <LineTextInput
+            value={searchPrompt}
+            placeholder="Buscar..."
+            icon="search"
+            deleteButton={true}
+            onChangeText={(text) => console.log(text)}
+        />
+      </View>
       {events.length > 0 ? (
         <ScrollView contentContainerStyle={styles.itemContainer}>
           {events.map((event) => (
@@ -67,8 +78,18 @@ const AllEvents = () => {
           ))}
         </ScrollView>
       ) : (
-        <Text style={styles.inputTitle}>No hay eventos disponibles.</Text>
+        <View style={styles.adviceContainer}>
+          <Text style={styles.noEvents}>No hay eventos disponibles.</Text>
+        </View>
       )}
+      <View style={styles.addEvent}>
+        <IconTextButton
+            text="Crear Evento "
+            iconName="plus"
+            iconPosition="right"
+            onPress={() => navigation.navigate("EventCreator" as never)}
+          />
+      </View>
     </View>
   );
 };

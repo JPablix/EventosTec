@@ -4,12 +4,10 @@ import { useState } from "react";
 // Styles
 import { styles } from "./Busqueda.style";
 // Components
-import MiniProfileCard from "../../src/components/cards/MiniProfileCard/MiniProfileCard";
-import MiniEventCard from "../../src/components/cards/MiniEventCard/MiniEventCard";
 import LineTextInput from "../../src/components/inputs/LineTextInput/LineTextInput";
+import IconTextButton from "../../src/components/buttons/IconTextButton/IconTextButton";
 
 const Busqueda = ({ navigation }) => {
-  const [searchPrompt, setsearchPrompt] = useState('');
   
   const activityList = [
     {
@@ -23,25 +21,19 @@ const Busqueda = ({ navigation }) => {
       title: "Actividad 2",
     },
   ];
-
-
   const handleCardPress = (activityList) => {
     navigation.navigate('Activities', { activityList });
-  };  
+  };
+  
+  
   return (
     <View style={styles.container}>
-      <View style={styles.itemContainer}>
-        <LineTextInput
-          value={searchPrompt}
-          placeholder="Buscar..."
-          icon="search"
-          deleteButton={true}
-          onChangeText={(text) => console.log(text)}
-        />
-      </View>
       <ScrollView contentContainerStyle={styles.itemContainer}>
       
-        
+        <IconTextButton
+          text="Eventos"
+          iconName="plus"
+          onPress={() => navigation.navigate("Eventos" as never)}/>
         
     
       </ScrollView>
