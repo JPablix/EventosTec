@@ -17,6 +17,8 @@ const AllEvents = () => {
 
   // Estados para manejar los eventos y la carga de los mismos
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [searchPrompt, setSearchPrompt] = useState('');
 
   // Función para obtener los eventos y sus categorías correspondientes
   const getEventsAndCategories = async () => {
@@ -53,8 +55,23 @@ const AllEvents = () => {
       getEventsAndCategories();
     }, [])
   );
-  //Parametros de busqueda
-  const [searchPrompt, setsearchPrompt] = useState('');
+  // Función para filtrar los eventos según la búsqueda
+  const filterEvents = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredEvents(events); // Si no hay término de búsqueda, mostrar todos los eventos
+    } else {
+      const lowercasedFilter = searchTerm.toLowerCase();
+      const filteredData = events.filter(item => 
+        item.title.toLowerCase().includes(lowercasedFilter)
+      );
+      setFilteredEvents(filteredData);
+    }
+  };
+
+  // Efecto para actualizar los eventos filtrados cuando cambia la búsqueda
+  useEffect(() => {
+    filterEvents(searchPrompt);
+  }, [searchPrompt, events]);
 
   return (
     <View style={styles.container}>
@@ -64,17 +81,17 @@ const AllEvents = () => {
             placeholder="Buscar..."
             icon="search"
             deleteButton={true}
-            onChangeText={(text) => console.log(text)}
+            onChangeText={(text) => setSearchPrompt(text)}
         />
       </View>
-      {events.length > 0 ? (
+      {filteredEvents.length > 0 ? (
         <ScrollView contentContainerStyle={styles.itemContainer}>
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <MiniEventCard 
               key={event.id}
               {...event} 
               category={event.categoryName}
-              />
+            />
           ))}
         </ScrollView>
       ) : (
