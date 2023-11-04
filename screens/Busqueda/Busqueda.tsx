@@ -41,33 +41,8 @@ const Busqueda = ({ navigation }) => {
       </View>
       <ScrollView contentContainerStyle={styles.itemContainer}>
       
-        <MiniProfileCard 
-          nickName="JPablix" 
-          name="Jose Granados" 
-          career="Ingeniería en Computación" 
-          carnet="2022028503"
-          imageSource={require("../../src/assets/profileDefault.png")}/>
-        <MiniEventCard 
-          title="No quería tomar, pero..." 
-          category="Fiesta"
-          description="Esta es la descripción de un evento"
-          date="09 de Noviembre"
-          time="20:00"
-          location="Bar Einstein"
-          onCardPress={() => handleCardPress(activityList)}/>
-        <MiniProfileCard 
-          nickName="Mela" 
-          name="Melany García" 
-          career="Administración de Empresas" 
-          carnet="2022097546"/>
-        <MiniEventCard 
-          title= "Fiesta de cumpleaños"
-          category="Fiesta"
-          description="Esta es la descripción de un evento"
-          date="20 de Septiembre"
-          time="18:00"
-          location="Casa de Mela"
-          onCardPress={() => handleCardPress(activityList)}/>
+        
+        
     
       </ScrollView>
     </View>

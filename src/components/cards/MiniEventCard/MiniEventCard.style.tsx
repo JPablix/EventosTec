@@ -5,8 +5,7 @@ import { Colors } from '../../../constants/Colors'
 export const styles = StyleSheet.create(
   {
     card: {
-        display: "flex", 
-        alignItems: 'center',  
+        display: "flex",  
         marginBottom: 20,
         borderRadius: 10,
         width: '80%',
@@ -60,6 +59,14 @@ export const styles = StyleSheet.create(
         position: 'absolute',
         bottom: 10,
         right: 10,
+    },
+    ownerName: {
+        fontFamily: 'oswaldBold',
+        color: Colors.gray,
+        fontSize: 20,
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
     },
 }
 )

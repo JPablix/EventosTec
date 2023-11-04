@@ -1,20 +1,21 @@
 # Lista de Pendientes
-- [X] Dejar la pantalla de Creación de Eventos Funcional
 - [ ] Hacer la barra de busqueda funcional
+- [ ] Hacer pantalla de los eventos creados por la asociación
 
-- [X] Arreglar el subir imagen de perfil
-- [X] Crear pantalla de edición y creación de eventos
-- [X] Crear barra de Busqueda (importar de la app personal)
-- [X] Crear card de Eventos
-- [X] Crear card de Actividades
-- [X] Crear card de Asociaciones
-- [X] Crear card de Estudiantes
-- [X] Hacer que los Eventos tengan una categoría, aparecerá por encima de la imagen
+- [ ] Incripción de la siguiente manera: 
+    Si ingresa un estudiante:
+    - [ ] Entrar al evento para ver los botones de inscripción
+    - [ ] Si ya se está inscrito, se muestra el botón de cancelar inscripción
+    Si ingresa una asociación:
+    - [ ] Ver botón de borrar
+    - [ ] Ver botón de editar
+    - [ ] Ver botón de agregar actividades
 
+- [ ] Aplicar la funcionalidad de borrar eventos
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
 - [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
 - [ ] Crear lo necesario para agregar usuarios a las asociaciones
-- [ ] Crear lo necesario para agregar eventos a las asociaciones
+- [X] Crear lo necesario para agregar eventos a las asociaciones
 
 ## Implementaciones                         ## Pendientes
 

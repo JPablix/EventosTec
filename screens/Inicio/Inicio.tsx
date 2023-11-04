@@ -17,6 +17,11 @@ const Inicio = () => {
           iconName="plus"
           onPress={() => navigation.navigate("EventCreator" as never)}
         />
+        <IconTextButton
+          text="Eventos"
+          iconName="plus"
+          onPress={() => navigation.navigate("Eventos" as never)}
+        />
       </View>
     </View>
   );

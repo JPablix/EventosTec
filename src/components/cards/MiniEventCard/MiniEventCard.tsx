@@ -2,15 +2,20 @@
 import { Text, View, Image, Pressable} from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types';
+import { handleDate } from '../../../utils/handleDate';
 // Styles
 import { styles } from './MiniEventCard.style'
 
 const MiniEventCard = (props) => {
+
+    const start = handleDate(props.startTime);
+
     return (
         <View style={styles.card}>
             <View style={styles.pictureContainer}>
                 <Image style={styles.pictures} source={props.pictureSource ? props.pictureSource : require("../../../assets/eventDefault.png")} />
                 <Text style={styles.category}>{props.category}</Text>
+                <Text style={styles.ownerName}>{props.owner.userName}</Text>
             </View>
         <Pressable onPress={props.onCardPress}>
             <View style={styles.infoContainer}>
@@ -20,7 +25,7 @@ const MiniEventCard = (props) => {
                 <View style={styles.siteInfo}>
                     <View style={styles.datetimeInfo}>
                         <Text style={styles.infoTitle}>Fecha</Text>
-                        <Text style={styles.infoText}>{props.date + ", " + props.time}</Text>
+                        <Text style={styles.infoText}>{start}</Text>
                     </View>
                     <View style={styles.datetimeInfo}>
                         <Text style={styles.infoTitle}>Lugar</Text>
@@ -38,11 +43,11 @@ MiniEventCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   category: PropTypes.string,
-  date: PropTypes.string,
-  time: PropTypes.string,
+  startTime: PropTypes.string,
   location: PropTypes.string,
   pictureSource: PropTypes.any,
   onCardPress: PropTypes.func,
+  owner: PropTypes.any,
 };
 
 export default MiniEventCard;
