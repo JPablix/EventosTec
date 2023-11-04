@@ -15,6 +15,8 @@ import Register from '../../screens/Register/Register';
 import UpdateUser from '../../screens/UpdateUser/UpdateUser';
 import Activities from '../../screens/Activities/Activities';
 import EventCreator from '../../screens/Event/EventCreator/EventCreator';
+import AllEvents from '../../screens/Event/EventCreator/AllEvents/AllEvents';
+
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
 
@@ -31,12 +33,23 @@ function AuthStackScreen() {
   );
 }
 
+
+function OptionsStackScreen() {
+  const OptionsStack = createStackNavigator();
+  return (
+    <OptionsStack.Navigator screenOptions={{}}>
+      
+    </OptionsStack.Navigator>
+  )
+}
+
 function DrawerNavigator() {
   const Drawer = createDrawerNavigator();
   const {authState, onLogout} = useAuth();
 
   //Datos del Usuario
   const userName = authState.data?.userName;
+  const organization = authState.data?.isOrganization;
 
   useEffect(() => {
   }, [authState.authenticated]);
@@ -44,7 +57,8 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator 
       drawerContent={props => <CustomDrawer {...props}userName={userName}/>}
-      screenOptions={drawerNavigatorOptions}
+      screenOptions={drawerNavigatorOptions as any}
+      initialRouteName="Inicio"
       >
       {/* Pantallas que se muestran solo cuando el usuario no está autenticado */}
       {!authState.authenticated && (
@@ -60,12 +74,14 @@ function DrawerNavigator() {
       {/* Pantallas que se muestran cuando el usuario está autenticado */}
       {authState.authenticated && (
         <>
+          {/* Pantalla principal*/}
           <Drawer.Screen 
           name="Inicio" 
           component={Inicio} 
           options={{
             drawerIcon: ({color}) => (<Ionicons name='home' size={24} color={color}/>),
           }}/>
+          {/* Pantallas que son invocadas por otras*/}
           <Drawer.Screen
           name="UpdateUser"
           component={UpdateUser}
@@ -83,13 +99,21 @@ function DrawerNavigator() {
           }}
           />
           <Drawer.Screen
+          name="AllEvents"
+          component={AllEvents}
+          options={{
+            drawerItemStyle: {display: 'none'},
+            headerShown: false,
+          }}/>
+          <Drawer.Screen
           name="EventCreator"
           component={EventCreator}
           options={{
             drawerItemStyle: {display: 'none'},
             headerShown: false,
-          }}
-          />
+          }}/>
+          
+          {/* Pantallas que se muestran siempre */}
           <Drawer.Screen 
           name="Búsqueda" 
           component={Busqueda} 
@@ -102,6 +126,12 @@ function DrawerNavigator() {
           options={{
             drawerIcon: ({color}) => (<Ionicons name='person' size={24} color={color}/>)
           }}/>
+          {/* Pantallas que se muestran cuando el usuario es organización */}
+          {organization && (
+            <>
+
+            </>
+          )}
           <Drawer.Screen 
           name="About" 
           component={About} 
