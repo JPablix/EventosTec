@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     color: Colors.gray,
     fontSize: 20,
     position: 'absolute',
-    bottom: 10,
+    bottom: 20,
     right: 10,
   },
   adviceContainer: {

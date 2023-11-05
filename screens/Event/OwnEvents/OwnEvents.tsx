@@ -17,6 +17,10 @@ const OwnEvents = () => {
   // Navigation
   const navigation = useNavigation();
 
+  const handleEditPress = (event) => {
+    navigation.navigate("UpdateEvents", { event });
+  };
+
   // Events
   const [events, setEvents] = useState([]);
   const [searchPrompt, setSearchPrompt] = useState('');
@@ -69,11 +73,12 @@ const OwnEvents = () => {
     </View>
     {events.length > 0 ? (
       <ScrollView contentContainerStyle={styles.itemContainer}>
-        {events.map((event) => (
-          <MiniEventCard 
-            key={event.id}
+        {events.map((event,key) => (
+          <MiniEventCard
+            key={key}
             {...event} 
             category={event.categoryName}
+            onEditPress={() => handleEditPress(event)}
           />
         ))}
       </ScrollView>
@@ -84,7 +89,7 @@ const OwnEvents = () => {
     )}
     <View style={styles.addEvent}>
       <IconTextButton
-        text="Crear Evento"
+        text="Crear Evento "
         iconName="plus"
         iconPosition="right"
         onPress={() => navigation.navigate("EventCreator" as never)}

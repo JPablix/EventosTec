@@ -29,7 +29,7 @@ export const styles = StyleSheet.create(
         display: "flex",
         width:'100%',
         paddingHorizontal: 20,
-        paddingBottom: 20,
+        paddingBottom: 10,
     },
     title: {
         fontFamily: 'oswaldBold',
@@ -67,6 +67,15 @@ export const styles = StyleSheet.create(
         position: 'absolute',
         bottom: 10,
         left: 10,
+    },
+    footerContainer: {
+        display: "flex",
+        flexDirection: "row",
+        borderTopColor: Colors.gray,
+        borderTopWidth: 2,
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+        paddingBottom: 10,
     },
 }
 )

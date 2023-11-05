@@ -1,6 +1,11 @@
 # Lista de Pendientes
-- [ ] Hacer la barra de busqueda funcional
-- [ ] Hacer pantalla de los eventos creados por la asociación
+
+### Pendientes de hoy
+- [ ] Editar los eventos
+- [ ] Añadir actividades a los eventos
+- [ ] Hacer que la pantalla de actividades reciban si el usuario es estudiante o asociación
+
+- [ ] Pantalla para agregar o eliminar colaboradores
 
 - [ ] Incripción de la siguiente manera: 
     Si ingresa un estudiante:
@@ -13,9 +18,7 @@
 
 - [ ] Aplicar la funcionalidad de borrar eventos
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
-- [X] Crear el componente de error, es un text rojo que solo se ve si se hizo un error.
 - [ ] Crear lo necesario para agregar usuarios a las asociaciones
-- [X] Crear lo necesario para agregar eventos a las asociaciones
 
 ## Implementaciones                         ## Pendientes
 
@@ -27,7 +30,7 @@
 - [ ] Gestionar el control de accesos 5     * Pendiente
 
 - [X] Registro de estudiantes 5             * Pendiente  
-- [ ] Visualizar calendario de eventos 7    * Pendiente
+- [X] Visualizar calendario de eventos 7    
 - [ ] Inscripción a eventos 8               * Pendiente
 - [ ] Formulario de propuestas 8            * Pendiente
 

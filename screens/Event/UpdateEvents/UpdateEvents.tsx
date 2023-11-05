@@ -1,47 +1,83 @@
 // Imports
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, KeyboardAvoidingView, Pressable, Image} from "react-native";
 import moment from "moment";
 import "moment/locale/es";
+import { RouteProp, useNavigation } from "@react-navigation/native";
 // Styles
-import { styles } from "./EventCreator.style";
-import { FontAwesome } from "@expo/vector-icons";
+import { styles } from "./UpdateEvents.style";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
-import { useNavigation } from "@react-navigation/native";
 import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
 import DateTimeInput from "../../../src/components/inputs/DateTimeInput/DateTimeInput";
 import NumericInput from "../../../src/components/inputs/NumericInput/NumericInput";
 import { useErrorOutput } from "../../../src/context/ErrorOutput";
-import { addEvent } from "../../../src/api/events/events";
+import { addEvent, updateEvent } from "../../../src/api/events/events";
+import { getEventCategories, getEventCategory } from "../../../src/api/api/data";
+import { handleDate } from "../../../src/utils/handleDate";
 
-const EventCreator = ({ route }) => {
-    const { handleError } = useErrorOutput();
+// Types
+type RootStackParamList = {
+    UpdateEvents: { event: EventProps };
+  };
+  type EditEventRouteProp = RouteProp<RootStackParamList, "UpdateEvents">;
+  // Interfaces
+  interface EventProps {
+    _id: string;
+    title: string;
+    description: string;
+    startTime: Date;
+    endTime: Date;
+    location: string;
+    capacity: number;
+    requiredCollaborators: number;
+    category: string;
+    // Agrega cualquier otra propiedad que necesites para tu objeto de evento.
+  }
+  interface EditEventProps {
+    route: EditEventRouteProp;
+  }
+
+const UpdateEvents: React.FC<EditEventProps> = ({ route }) => {
+    const { event } = route.params;
+    console.log(event.category);
+    // Navigation
     const navigation = useNavigation();
-    // Manejo de fechas
-    const handleDate = (date: string | undefined) => {
-        return moment(date).locale("es").format("LLLL");
+    // Error handling
+    const { handleError } = useErrorOutput();
+    // Category
+    const getCategory = async () => {
+        const response = await getEventCategory(event.category);
+        console.log(response);
     };
-    // Manejo de eventos
-    const handleCreateEvent = async () => {
-        const response = await addEvent(data);
-        handleError(response.data);
-      };
+    useEffect(() => {
+    getCategory();
+    }, []);
 
-    const [data, setData] = useState<any>({
-        title: "",
-        description: "",
-        startTime: new Date(),
-        endTime: new Date(),
-        location: "",
-        capacity: 1,
-        requiredCollaborators: 1,
-        categoryName: "",
-    });
+    // Inputs states
+    const [data, setData] = useState<any>({ ...event });
+
+    // Get categories
+    const [categories, setCategories] = useState<any>([]);
+    const getCategories = async () => {
+        const response = await getEventCategories();
+        setCategories(response.data);
+    };
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+    const handleUpdateEvent = async () => {
+        const response = await updateEvent(data);
+        handleError(response.data);
+        if (response.status === 200) {
+          navigation.goBack();
+        }
+      };
 
     return (
     <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.cardTitle}>Creación de Eventos</Text>
+            <Text style={styles.cardTitle}>{event.title}</Text>
             <View style={styles.card}>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputTitle}>Nombre del Evento</Text>
@@ -122,16 +158,13 @@ const EventCreator = ({ route }) => {
                 <View style={styles.buttonsContainer}>
                     <IconTextButton
                     text = "Cancelar "
-                    onPress={() => navigation.navigate("Eventos" as never)}
+                    onPress={() => navigation.navigate("Eventos Creados" as never)}
                     iconName="close"
                     iconPosition="right"
                     />
                     <IconTextButton 
                     text="Confirmar " 
-                    onPress={() => {
-                        handleCreateEvent(),
-                        navigation.navigate("Eventos" as never);
-                    }}
+                    onPress={() => handleUpdateEvent()}
                     iconName="check"
                     iconPosition="right"
                     />
@@ -141,4 +174,4 @@ const EventCreator = ({ route }) => {
     </KeyboardAvoidingView>
   );
 };
-export default EventCreator;
+export default UpdateEvents;

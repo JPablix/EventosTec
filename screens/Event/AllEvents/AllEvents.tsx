@@ -65,9 +65,9 @@ const AllEvents = () => {
       </View>
       {events.length > 0 ? (
         <ScrollView contentContainerStyle={styles.itemContainer}>
-          {events.map((event) => (
-            <MiniEventCard 
-              key={event.id}
+          {events.map((event,key) => (
+            <MiniEventCard
+              key={key}
               {...event} 
               category={event.categoryName}
             />
