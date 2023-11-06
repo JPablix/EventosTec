@@ -14,6 +14,10 @@ const MiniEventCard = (props) => {
     const navigation = useNavigation();
     const start = handleDate(props.startTime);
 
+    const handleCardPress = () => {
+        props.onCardPress(props.eventId._id);
+    }
+
     return (
         <View style={styles.card}>
             <View style={styles.pictureContainer}>
@@ -21,7 +25,7 @@ const MiniEventCard = (props) => {
                 <Text style={styles.category}>{props.category}</Text>
                 <Text style={styles.ownerName}>{props.owner.userName}</Text>
             </View>
-        <Pressable onPress={props.onCardPress}>
+        <Pressable onPress={handleCardPress}>  
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{props.title}</Text>
                 <Text style={styles.infoTitle}>Descripción</Text>

@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, ScrollView } from "react-native";
+// API
 import { getEventCategory } from "../../../src/api/api/data";
+import { getOrganizationEvents } from "../../../src/api/events/events";
 // Styles
 import { styles } from "./OwnEvents.style";
 // Components
@@ -10,18 +12,16 @@ import MiniEventCard from "../../../src/components/cards/MiniEventCard/MiniEvent
 import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 
-import { getOrganizationEvents } from "../../../src/api/events/events";
-
-const OwnEvents = () => {
+const OwnEvents = ({ navigation }) => {
   // Navigation
-  const navigation = useNavigation();
+  //const navigation = useNavigation<Navigation>();
 
   const handleEditPress = (event) => {
     navigation.navigate("UpdateEvents", { event });
   };
 
-  const handleAddPress = (event) => {
-    navigation.navigate("Actividades", { event });
+  const handleAddPress = (id) => {
+    navigation.navigate("Actividades", {id : id});
   };
 
   // Events
@@ -63,6 +63,7 @@ const OwnEvents = () => {
     fetchAndSetEvents();
   }, [searchPrompt]); 
 
+
   return (
     <View style={styles.container}>
     <View style={styles.itemContainer}>
@@ -83,7 +84,7 @@ const OwnEvents = () => {
             eventId={event}
             category={event.categoryName}
             onEditPress={() => handleEditPress(event)}
-            onCardPress={() => handleAddPress(event)}
+            onCardPress={(pablo) => handleAddPress(pablo)}
           />
         ))}
       </ScrollView>

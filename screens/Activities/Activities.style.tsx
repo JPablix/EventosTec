@@ -3,10 +3,8 @@ import { Colors } from '../../src/constants/Colors'
 
 export const styles = StyleSheet.create({
     container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Colors.primary,
+        display: "flex",
+        width: "100%",
     },
     itemContainer: {
         flexGrow: 1,
@@ -25,8 +23,12 @@ export const styles = StyleSheet.create({
     buttonsContainer: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         width: "100%",
         padding: 10,
+        position: 'absolute',
+        bottom: 20,
+        right: 10,
+        left: 10,
     },
 });

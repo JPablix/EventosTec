@@ -1,16 +1,18 @@
 # Lista de Pendientes
 
 ### Pendientes de hoy
-- [X] Editar los eventos
 - [ ] Añadir actividades a los eventos
+- [ ] Hacer que los eventos de la busqueda tambien conduzcan a las actividades
+- [ ] Agregar botones de inscripción a las actividades para usuarios
 
-- [ ] Al tocar un evento debe de llevar a la pantalla de actividades
-- [ ] Al final de la pantalla de actividades se deben
-    - [ ] Mostrar Inscribir o Cancelar Inscripción 
-    - [ ] Mostrar Añadir Actividades o borrar evento
-
-
-- [ ] Hacer que la pantalla de actividades reciban si el usuario es estudiante o asociación
+- [ ] Al final de la tarjeta de Evento mostrar:
+    - Por usuario:
+        - [ ] Inscribirse
+        - [ ] Cancelar inscripción
+    - Por asociación:
+        - [X] Editar
+        - [X] Borrar
+        - [ ] Agregar actividades
 
 - [ ] Pantalla para agregar o eliminar colaboradores
 
@@ -23,9 +25,8 @@
     - [ ] Ver botón de editar
     - [ ] Ver botón de agregar actividades
 
-- [ ] Aplicar la funcionalidad de borrar eventos
+- [X] Aplicar la funcionalidad de borrar eventos
 - [ ] Aplicar la funcionalidad de Eliminar Perfil
-- [ ] Crear lo necesario para agregar usuarios a las asociaciones
 
 ## Implementaciones                         ## Pendientes
 

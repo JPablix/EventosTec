@@ -12,6 +12,10 @@ const {
   addUserEventJoinRoute,
   getUserEventsRoute,
   deleteUserEventLeaveRoute,
+  updateCollaboratorsEventListRoute,
+  addEventActivityRoute,
+  getEventActivitiesRoute,
+  rateEventActivityRoute,
 } = eventRoutes;
 
 export const getAllEvents = async () => {
@@ -81,6 +85,43 @@ export const joinUserToEvent = async (props: any) => {
 export const leaveUserFromEvent = async (props: any) => {
   try {
     const response = await axios.put(deleteUserEventLeaveRoute, props);
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};
+
+export const updateCollaboratorsEventList = async (props: any) => {
+  try {
+    const response = await axios.put(updateCollaboratorsEventListRoute, props);
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};
+
+export const addEventActivity = async (props: any) => {
+  try {
+    const response = await axios.post(addEventActivityRoute, props);
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};
+
+export const getEventActivities = async (id: any) => {
+  try {
+    const url = `${getEventActivitiesRoute}/${id}`;
+    const response = await axios.get(url);
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};
+
+export const rateEventActivity = async (props: any) => {
+  try {
+    const response = await axios.post(rateEventActivityRoute, props);
     return response;
   } catch (error: any) {
     return error.response;
