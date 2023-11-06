@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 10,
+    left: 10,
   },
   adviceContainer: {
     flex: 1,

@@ -1,8 +1,15 @@
 # Lista de Pendientes
 
 ### Pendientes de hoy
-- [ ] Editar los eventos
+- [X] Editar los eventos
 - [ ] Añadir actividades a los eventos
+
+- [ ] Al tocar un evento debe de llevar a la pantalla de actividades
+- [ ] Al final de la pantalla de actividades se deben
+    - [ ] Mostrar Inscribir o Cancelar Inscripción 
+    - [ ] Mostrar Añadir Actividades o borrar evento
+
+
 - [ ] Hacer que la pantalla de actividades reciban si el usuario es estudiante o asociación
 
 - [ ] Pantalla para agregar o eliminar colaboradores

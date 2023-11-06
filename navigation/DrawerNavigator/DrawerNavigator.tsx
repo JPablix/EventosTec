@@ -93,11 +93,10 @@ function DrawerNavigator() {
           }}
           />
           <Drawer.Screen
-          name="Activities"
+          name="Actividades"
           component={Activities}
           options={{
             drawerItemStyle: {display: 'none'},
-            headerShown: false,
           }}
           />
           <Drawer.Screen

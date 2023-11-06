@@ -18,10 +18,10 @@ import { handleDate } from "../../../src/utils/handleDate";
 // Types
 type RootStackParamList = {
     UpdateEvents: { event: EventProps };
-  };
-  type EditEventRouteProp = RouteProp<RootStackParamList, "UpdateEvents">;
-  // Interfaces
-  interface EventProps {
+};
+type EditEventRouteProp = RouteProp<RootStackParamList, "UpdateEvents">;
+// Interfaces
+interface EventProps {
     _id: string;
     title: string;
     description: string;
@@ -31,15 +31,13 @@ type RootStackParamList = {
     capacity: number;
     requiredCollaborators: number;
     category: string;
-    // Agrega cualquier otra propiedad que necesites para tu objeto de evento.
-  }
-  interface EditEventProps {
+}
+interface EditEventProps {
     route: EditEventRouteProp;
-  }
+}
 
 const UpdateEvents: React.FC<EditEventProps> = ({ route }) => {
     const { event } = route.params;
-    console.log(event.category);
     // Navigation
     const navigation = useNavigation();
     // Error handling

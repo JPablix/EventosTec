@@ -1,19 +1,18 @@
 // Imports
-import { Text, View, Image, Pressable} from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types';
+import { Text, View, Image, Pressable} from 'react-native'
 import { handleDate } from '../../../utils/handleDate';
 import { useNavigation } from '@react-navigation/native';
 // Styles
 import { styles } from './MiniEventCard.style'
 // Components
 import IconTextButton from '../../buttons/IconTextButton/IconTextButton';
+import { deleteEvent } from '../../../api/events/events';
 
 const MiniEventCard = (props) => {
     const navigation = useNavigation();
     const start = handleDate(props.startTime);
-
-
 
     return (
         <View style={styles.card}>
@@ -51,7 +50,7 @@ const MiniEventCard = (props) => {
                     text="Borrar "
                     iconName="trash"
                     iconPosition="right"
-                    onPress={() => console.log("Borrando evento")}
+                    onPress={() => deleteEvent(props.eventId._id)}
                 />
             </View>
         }
@@ -70,7 +69,7 @@ MiniEventCard.propTypes = {
   onCardPress: PropTypes.func,
   owner: PropTypes.any,
   onEditPress: PropTypes.func,
-  eventId: PropTypes.string,
+  eventId: PropTypes.any,
 };
 
 export default MiniEventCard;

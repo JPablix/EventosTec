@@ -12,13 +12,16 @@ import LineTextInput from "../../../src/components/inputs/LineTextInput/LineText
 
 import { getOrganizationEvents } from "../../../src/api/events/events";
 
-
 const OwnEvents = () => {
   // Navigation
   const navigation = useNavigation();
 
   const handleEditPress = (event) => {
     navigation.navigate("UpdateEvents", { event });
+  };
+
+  const handleAddPress = (event) => {
+    navigation.navigate("Actividades", { event });
   };
 
   // Events
@@ -77,8 +80,10 @@ const OwnEvents = () => {
           <MiniEventCard
             key={key}
             {...event} 
+            eventId={event}
             category={event.categoryName}
             onEditPress={() => handleEditPress(event)}
+            onCardPress={() => handleAddPress(event)}
           />
         ))}
       </ScrollView>

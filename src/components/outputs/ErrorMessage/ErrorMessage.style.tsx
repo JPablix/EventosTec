@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'oswaldSemiBold',
-        color: Colors.error,
+        color: Colors.gray,
         textTransform: "uppercase",
     },
     modalOverlay: {
