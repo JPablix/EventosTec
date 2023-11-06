@@ -1,7 +1,7 @@
 // Imports
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, Image, Pressable, ImageBackground} from 'react-native';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItemList, useDrawerStatus } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
@@ -11,8 +11,24 @@ import { styles } from './CustomDrawer.style';
 const CustomDrawer = (props) => {
     const { onLogout } = useAuth();
     const navigation = useNavigation();
-
+    // User Name
     const userName = props.userName || "UserName";
+
+    // Drawer Info Update
+    const isDrawerOpen = useDrawerStatus() === 'open';
+    const hasBeenUpdated = useRef(false);
+    useEffect(() => {
+        if (isDrawerOpen && !hasBeenUpdated.current) {
+        props.updateDrawer();
+        hasBeenUpdated.current = true; // Set the ref to true after calling updateDrawer
+        }
+        if (!isDrawerOpen) {
+        hasBeenUpdated.current = false; // Reset the ref when the drawer is closed
+        }
+    }, [isDrawerOpen, props.updateDrawer]);
+
+
+
     return (
         <View style={styles.container}>
             <DrawerContentScrollView 
@@ -22,16 +38,16 @@ const CustomDrawer = (props) => {
                     source={require('../../../assets/patternExample.png')} 
                     style={styles.imageBackground}>
                     <Image 
-                        source={require('../../../assets/profileDefault.png')} 
+                        source={props.image} 
                         style={styles.profileImage} />
                     <View style={{}}>
                         <Text style={styles.userName}>
                             {userName}
                         </Text>
-                        <View style={styles.followInfo}>
+                        {/* <View style={styles.followInfo}>
                             <Text style={styles.followNumber}>999</Text>
                             <Ionicons name='person' style={styles.miniIcons} />
-                        </View>
+                        </View> */}
                     </View>
                 </ImageBackground>    
                 <View style={styles.drawerItemContainer}>

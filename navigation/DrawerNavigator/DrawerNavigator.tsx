@@ -1,10 +1,12 @@
 // Imports
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { drawerNavigatorOptions } from './DrawerNavigationOptions';
-
+import { useFocusEffect } from '@react-navigation/native';
+import { useDrawerStatus } from '@react-navigation/drawer';
 // Screens
 import Inicio from '../../screens/Inicio/Inicio';
 import Busqueda from '../../screens/Busqueda/Busqueda';
@@ -20,10 +22,9 @@ import OwnEvents from '../../screens/Event/OwnEvents/OwnEvents';
 import UpdateEvents from '../../screens/Event/UpdateEvents/UpdateEvents';
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
-
 // Context
-import { AuthProvider, useAuth } from "../../src/context/AuthContext";
-
+import { useAuth } from "../../src/context/AuthContext";
+// Stack Screens
 function AuthStackScreen() {
   const AuthStack = createStackNavigator();
   return (
@@ -33,31 +34,49 @@ function AuthStackScreen() {
     </AuthStack.Navigator>
   );
 }
-
-
-function OptionsStackScreen() {
-  const OptionsStack = createStackNavigator();
-  return (
-    <OptionsStack.Navigator screenOptions={{}}>
-      
-    </OptionsStack.Navigator>
-  )
-}
+// Types
+type UserProfile = {
+  userName: string;
+  isOrganization: boolean;
+  profilePicture: {
+    uri: string;
+  };
+};
 
 function DrawerNavigator() {
+  // Navigation
   const Drawer = createDrawerNavigator();
-  const {authState, onLogout} = useAuth();
-
-  //Datos del Usuario
-  const userName = authState.data?.userName;
-  const organization = authState.data?.isOrganization;
-
+  // Auth Data
+  const {authState, onGetProfile} = useAuth();
   useEffect(() => {
   }, [authState.authenticated]);
+  // Profile Picture
+  const Buffer = require("buffer").Buffer;
+  const defaultProfilePicture = require('../../src/assets/profileDefault.png');
+  // User Data
+  const [userData, setUserData] = useState<UserProfile>({
+    userName: "User",  
+    isOrganization: false, 
+    profilePicture: { uri: '' },
+  });
+  const updateProfileInfo = async () => {
+    const response = await onGetProfile();
+    setUserData({
+      userName: response.userName || "User",
+      isOrganization: response.isOrganization || false,
+      profilePicture: {
+        uri: response.profilePicture
+        ? `data:image/png;base64,${Buffer.from(
+          response.profilePicture
+          ).toString("base64")}`
+          : Image.resolveAssetSource(defaultProfilePicture).uri,
+      }
+    });
+  };
 
   return (
     <Drawer.Navigator 
-      drawerContent={props => <CustomDrawer {...props}userName={userName}/>}
+      drawerContent={props => <CustomDrawer {...props} updateDrawer={updateProfileInfo} userName={userData.userName} image={userData.profilePicture}/>}
       screenOptions={drawerNavigatorOptions as any}
       initialRouteName="Inicio"
       >
@@ -134,7 +153,7 @@ function DrawerNavigator() {
             drawerIcon: ({color}) => (<Ionicons name='person' size={24} color={color}/>)
           }}/>
           {/* Pantallas que se muestran cuando el usuario es organización */}
-          {organization && (
+          {userData.isOrganization && (
             <>
               <Drawer.Screen 
               name="Eventos Creados" 
@@ -156,3 +175,7 @@ function DrawerNavigator() {
   );
 }
 export default DrawerNavigator;
+
+function onGetProfile() {
+  throw new Error('Function not implemented.');
+}
