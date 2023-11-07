@@ -4,7 +4,7 @@ import { View, Text, ScrollView, KeyboardAvoidingView, Pressable, Image} from "r
 import moment from "moment";
 import "moment/locale/es";
 // Styles
-import { styles } from "./EventCreator.style";
+import { styles } from "./ActivityCreator.style";
 import { FontAwesome } from "@expo/vector-icons";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 import { useNavigation } from "@react-navigation/native";
@@ -12,38 +12,44 @@ import IconTextButton from "../../../src/components/buttons/IconTextButton/IconT
 import DateTimeInput from "../../../src/components/inputs/DateTimeInput/DateTimeInput";
 import NumericInput from "../../../src/components/inputs/NumericInput/NumericInput";
 import { useErrorOutput } from "../../../src/context/ErrorOutput";
-import { addEvent } from "../../../src/api/events/events";
+import { addEvent, addEventActivity } from "../../../src/api/events/events";
 
-const EventCreator = ({ route }) => {
+const ActivityCreator = ({ route }) => {
+    // Event ID
+    const eventId = route.params.id;
+    // Error handling
     const { handleError } = useErrorOutput();
+    // Navigation
     const navigation = useNavigation();
     // Manejo de fechas
     const handleDate = (date: string | undefined) => {
         return moment(date).locale("es").format("LLLL");
     };
-    // Manejo de eventos
-    const handleCreateEvent = async () => {
-        const response = await addEvent(data);
-        handleError(response.data);
-      };
-
+    // Data handling
     const [data, setData] = useState<any>({
         title: "",
         description: "",
         startTime: new Date(),
         endTime: new Date(),
         location: "",
-        capacity: 1,
-        requiredCollaborators: 1,
-        categoryName: "",
+        collaborator: "",
+        eventId: eventId,   // Tiene que sacarlo de route
     });
+
+    const handleCreateActivity = async () => {
+        const response = await addEventActivity(data);
+        if (response.status === 200) {
+            handleError(response.data);
+          navigation.goBack();
+        }
+      };
 
     return (
     <KeyboardAvoidingView style={styles.keyboardAvoidingView} behavior="height">
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.card}>
                 <View style={styles.inputContainer}>
-                    <Text style={styles.inputTitle}>Nombre del Evento</Text>
+                    <Text style={styles.inputTitle}>Nombre de la actividad</Text>
                     <LineTextInput
                     value={data.title}
                     onChangeText={(text: string) => setData({ ...data, title: text })}
@@ -60,12 +66,6 @@ const EventCreator = ({ route }) => {
                     value={data.location}
                     onChangeText={(text: string) => setData({ ...data, location: text })}
                     placeholder="Lugar en el que se realizará"
-                    />
-                    <Text style={styles.inputTitle}>Categoría del Evento</Text>
-                    <LineTextInput
-                    value={data.categoryName}
-                    onChangeText={(text: string) => setData({ ...data, categoryName: text })}
-                    placeholder="Categoría a la que pertenece"
                     />
                 </View>
                     <Text style={styles.inputTitle}>Fecha y Hora de Inicio</Text>
@@ -100,36 +100,18 @@ const EventCreator = ({ route }) => {
                         setDatetime={(date: Date) => setData({ ...data, endTime: date })}
                         />
                     </View>
-                    <Text style={styles.inputTitle}>Capacidad de participantes</Text>
-                    <NumericInput
-                        min={1}
-                        max={15}
-                        count={data.capacity}
-                        setCount={(capacity: number) =>
-                        setData({ ...data, capacity: capacity })
-                        }
-                    />
-                    <Text style={styles.inputTitle}>Colaboradores necesarios</Text>
-                    <NumericInput
-                        min={1}
-                        max={15}
-                        count={data.requiredCollaborators}
-                        setCount={(requiredCollaborators: number) =>
-                        setData({ ...data, requiredCollaborators: requiredCollaborators })
-                        }
-                    />
                 <View style={styles.buttonsContainer}>
                     <IconTextButton
                     text = "Cancelar "
-                    onPress={() => navigation.navigate("Eventos" as never)}
+                    onPress={() => navigation.navigate("Eventos Creados" as never)} 
                     iconName="close"
                     iconPosition="right"
                     />
                     <IconTextButton 
                     text="Confirmar " 
                     onPress={() => {
-                        handleCreateEvent(),
-                        navigation.navigate("Eventos" as never);
+                        handleCreateActivity(),
+                        navigation.navigate("Eventos Creados" as never);
                     }}
                     iconName="check"
                     iconPosition="right"
@@ -140,4 +122,4 @@ const EventCreator = ({ route }) => {
     </KeyboardAvoidingView>
   );
 };
-export default EventCreator;
+export default ActivityCreator;

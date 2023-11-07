@@ -82,6 +82,7 @@ const OwnEvents = ({ navigation }) => {
             isJoined={true}
             event={event}
             editable={true}
+            navigation={navigation}
             onEditPress={() => handleEditPress(event)}
             onCardPress={(id) => handleAddPress(id)}
           />
@@ -97,7 +98,7 @@ const OwnEvents = ({ navigation }) => {
         text="Crear Evento "
         iconName="plus"
         iconPosition="right"
-        onPress={() => navigation.navigate("EventCreator" as never)}
+        onPress={() => navigation.navigate("Creación de Eventos" as never)}
       />
     </View>
   </View>

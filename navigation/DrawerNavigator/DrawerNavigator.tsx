@@ -25,6 +25,7 @@ import MyEvents from '../../screens/Event/MyEvents/MyEvents';
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
 // Context
 import { useAuth } from "../../src/context/AuthContext";
+import ActivityCreator from '../../screens/Activities/ActivityCreator/ActivityCreator';
 // Stack Screens
 function AuthStackScreen() {
   const AuthStack = createStackNavigator();
@@ -58,7 +59,7 @@ function DrawerNavigator() {
   const [userData, setUserData] = useState<UserProfile>({
     userName: "User",  
     isOrganization: false, 
-    profilePicture: { uri: '' },
+    profilePicture: { uri: "  "	 },
   });
   const updateProfileInfo = async () => {
     const response = await onGetProfile();
@@ -66,6 +67,7 @@ function DrawerNavigator() {
       userName: response.userName || "User",
       isOrganization: response.isOrganization || false,
       profilePicture: {
+        // @ts-ignore
         uri: response.profilePicture
         ? `data:image/png;base64,${Buffer.from(
           response.profilePicture
@@ -126,17 +128,23 @@ function DrawerNavigator() {
           }}
           />
           <Drawer.Screen
+          name="Añadir Actividad"
+          component={ActivityCreator}
+          options={{
+            drawerItemStyle: {display: 'none'},
+          }}
+          />
+          <Drawer.Screen
           name="Eventos"
           component={AllEvents}
           options={{
             drawerItemStyle: {display: 'none'},
           }}/>
           <Drawer.Screen
-          name="EventCreator"
+          name="Creación de Eventos"
           component={EventCreator}
           options={{
             drawerItemStyle: {display: 'none'},
-            //headerShown: false,
           }}/>
           <Drawer.Screen
           name="UpdateEvents"

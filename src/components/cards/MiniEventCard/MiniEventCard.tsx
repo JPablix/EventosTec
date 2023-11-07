@@ -18,6 +18,8 @@ import {
 import { useErrorOutput } from '../../../context/ErrorOutput';
 
 const MiniEventCard = (props) => {
+    // Navigation
+    const navigation = useNavigation();
     //Error handling
     const { handleError } = useErrorOutput();
     // Date handling
@@ -26,7 +28,11 @@ const MiniEventCard = (props) => {
         props.onCardPress(props.event._id);
     }
 
-        
+    const handleAddActivity = () => {
+        props.navigation.navigate("Añadir Actividad", { id: props.event._id } );
+    }
+    
+            
 
     const handleOnPress = async () => {
         console.log("Estado de is joined ========>",props.isJoined);
@@ -72,13 +78,20 @@ const MiniEventCard = (props) => {
         {props.editable ? (
             <View style={styles.footerContainerEditable}>
                 <IconTextButton
-                    text="Editar "
+                    text=""
                     iconName="pencil"
                     iconPosition="right"
                     onPress={() => props.onEditPress()}
                 />
                 <IconTextButton
-                    text="Borrar "
+                    text=""
+                    iconName="plus"
+                    iconPosition="right"
+                    // @ts-ignore
+                    onPress={() => handleAddActivity()}
+                />
+                <IconTextButton
+                    text=""
                     iconName="trash"
                     iconPosition="right"
                     onPress={() => deleteEvent(props.event._id)}
