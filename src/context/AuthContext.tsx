@@ -127,7 +127,9 @@ export const AuthProvider = ({ children }: any) => {
     console.log("USUARIO VIEJO", await SecureStore.getItemAsync("user"));
     await SecureStore.setItemAsync("user", JSON.stringify(profile.data));
     console.log("USUARIO NUEVO", await SecureStore.getItemAsync("user"));
-    handleError("User data updated");
+    handleError({message: "Información de perfil actualizada", name: "Perfil actualizado"});
+
+    
   }
   
   const onGetProfile = async () => {
