@@ -15,13 +15,35 @@ import {
     joinUserToEvent,
     leaveUserFromEvent,
   } from "../../../api/events/events";
+import { useErrorOutput } from '../../../context/ErrorOutput';
 
 const MiniEventCard = (props) => {
-
+    //Error handling
+    const { handleError } = useErrorOutput();
+    // Date handling
     const start = handleDate(props.event.startTime);
     const handleCardPress = () => {
         props.onCardPress(props.event._id);
     }
+
+        
+
+    const handleOnPress = async () => {
+        console.log("Estado de is joined ========>",props.isJoined);
+        let response = [];
+        if (props.isJoined) {
+          response = await leaveUserFromEvent({ eventId: props._id });
+          // @ts-ignore
+          if (response.status === 200) {
+            props.onLeave && props.onLeave();
+          }
+        } else {
+          response = await joinUserToEvent({ eventId: props._id });
+        }
+        // @ts-ignore
+        handleError(response.data);
+    };
+
     
     return (
         <View style={styles.card}>
@@ -48,7 +70,7 @@ const MiniEventCard = (props) => {
             </View>
         </Pressable>
         {props.editable ? (
-            <View style={styles.footerContainer}>
+            <View style={styles.footerContainerEditable}>
                 <IconTextButton
                     text="Editar "
                     iconName="pencil"
@@ -63,12 +85,13 @@ const MiniEventCard = (props) => {
                 />
             </View>
         ) : (
-            <View style={styles.footerContainer}>
+            <View style={styles.footerContainerNotEditable}>
                 <IconTextButton
                     text="Ingresar "
-                    iconName="question"
+                    iconName={props.isJoined ? "user-times" : "user-plus"}
                     iconPosition="right"
-                    onPress={() => console.log()}
+                    // @ts-ignore
+                    onPress={() => handleOnPress()}
                 />
             </View>
         )}
@@ -82,6 +105,7 @@ MiniEventCard.propTypes = {
   onCardPress: PropTypes.func,
   onEditPress: PropTypes.func,
   editable: PropTypes.bool,
+  onLeave: PropTypes.func,
 };
 
 export default MiniEventCard;

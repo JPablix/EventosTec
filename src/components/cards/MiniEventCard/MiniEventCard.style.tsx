@@ -68,12 +68,21 @@ export const styles = StyleSheet.create(
         bottom: 10,
         left: 10,
     },
-    footerContainer: {
+    footerContainerEditable: {
         display: "flex",
         flexDirection: "row",
         borderTopColor: Colors.gray,
         borderTopWidth: 2,
         justifyContent: "space-between",
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+    },
+    footerContainerNotEditable: {
+        display: "flex",
+        flexDirection: "row",
+        borderTopColor: Colors.gray,
+        borderTopWidth: 2,
+        justifyContent: "center",
         paddingHorizontal: 20,
         paddingBottom: 10,
     },

@@ -1,15 +1,16 @@
 // Imports
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, ScrollView } from "react-native";
-import { getAllEvents } from "../../../src/api/events/events";
+import { getAllEvents, getUserEvents } from "../../../src/api/events/events";
 import { getEventCategory } from "../../../src/api/api/data";
 // Styles
-import { styles } from "./AllEvents.style";
+import { styles } from "./MyEvents.style";
 // Components
 import MiniEventCard from "../../../src/components/cards/MiniEventCard/MiniEventCard";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 
-const AllEvents = ({ navigation }) => {
+const MyEvents = ({ navigation }) => {
   // Navigation
   const handleEditPress = (event) => {
     navigation.navigate("UpdateEvents", { event });
@@ -24,7 +25,7 @@ const AllEvents = ({ navigation }) => {
 
   const fetchAndSetEvents = async () => {
     try {
-      const eventsResponse = await getAllEvents();
+      const eventsResponse = await getUserEvents();
       let eventsData = eventsResponse.data;
 
       if (searchPrompt) {
@@ -74,7 +75,7 @@ const AllEvents = ({ navigation }) => {
             <MiniEventCard
             key={key}
             {...event} 
-            isJoined={false}
+            isJoined={true}
             event={event}
             editable={false}
             onLeave={fetchAndSetEvents}
@@ -84,11 +85,11 @@ const AllEvents = ({ navigation }) => {
         </ScrollView>
       ) : (
         <View style={styles.adviceContainer}>
-          <Text style={styles.noEvents}>No hay eventos disponibles.</Text>
+          <Text style={styles.noEvents}>Aún no te has inscrito en eventos.</Text>
         </View>
       )}
     </View>
   );
 };
 
-export default AllEvents;
+export default MyEvents;

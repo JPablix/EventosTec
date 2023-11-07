@@ -20,6 +20,7 @@ import EventCreator from '../../screens/Event/EventCreator/EventCreator';
 import AllEvents from '../../screens/Event/AllEvents/AllEvents';
 import OwnEvents from '../../screens/Event/OwnEvents/OwnEvents';
 import UpdateEvents from '../../screens/Event/UpdateEvents/UpdateEvents';
+import MyEvents from '../../screens/Event/MyEvents/MyEvents';
 // Components
 import CustomDrawer from '../../src/components/drawers/CustomDrawer/CustomDrawer';
 // Context
@@ -151,6 +152,12 @@ function DrawerNavigator() {
           component={Busqueda} 
           options={{
             drawerIcon: ({color}) => (<Ionicons name='search' size={24} color={color}/>),
+          }}/>
+          <Drawer.Screen 
+          name="Mis Eventos" 
+          component={MyEvents} 
+          options={{
+            drawerIcon: ({color}) => (<Ionicons name='ios-people-sharp' size={24} color={color}/>),
           }}/>
           <Drawer.Screen 
           name="Perfil" 
