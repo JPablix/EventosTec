@@ -8,11 +8,17 @@ import { getEventCategory } from "../../../src/api/api/data";
 import { styles } from "./AllEvents.style";
 // Components
 import MiniEventCard from "../../../src/components/cards/MiniEventCard/MiniEventCard";
-import IconTextButton from "../../../src/components/buttons/IconTextButton/IconTextButton";
 import LineTextInput from "../../../src/components/inputs/LineTextInput/LineTextInput";
 
-const AllEvents = () => {
-  const navigation = useNavigation();
+const AllEvents = ({ navigation }) => {
+  // Navigation
+  const handleEditPress = (event) => {
+    navigation.navigate("UpdateEvents", { event });
+  };
+
+  const handleAddPress = (id) => {
+    navigation.navigate("Actividades", { id });
+  };
 
   const [events, setEvents] = useState([]); 
   const [searchPrompt, setSearchPrompt] = useState('');
@@ -67,9 +73,13 @@ const AllEvents = () => {
         <ScrollView contentContainerStyle={styles.itemContainer}>
           {events.map((event,key) => (
             <MiniEventCard
-              key={key}
-              {...event} 
-              category={event.categoryName}
+            key={key}
+            {...event} 
+            eventId={event}
+            category={event.categoryName}
+            editable={false}
+            //onEditPress={() => handleEditPress(event)}
+            onCardPress={(id) => handleAddPress(id)}
             />
           ))}
         </ScrollView>

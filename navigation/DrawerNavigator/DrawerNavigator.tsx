@@ -76,7 +76,13 @@ function DrawerNavigator() {
 
   return (
     <Drawer.Navigator 
-      drawerContent={props => <CustomDrawer {...props} updateDrawer={updateProfileInfo} userName={userData.userName} image={userData.profilePicture}/>}
+      drawerContent={props => 
+        <CustomDrawer {...props} 
+          updateDrawer={updateProfileInfo} 
+          userName={userData.userName} 
+          image={userData.profilePicture}
+          />
+        }
       screenOptions={drawerNavigatorOptions as any}
       initialRouteName="Inicio"
       >

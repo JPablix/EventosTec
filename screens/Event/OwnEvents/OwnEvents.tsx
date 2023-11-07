@@ -14,14 +14,12 @@ import LineTextInput from "../../../src/components/inputs/LineTextInput/LineText
 
 const OwnEvents = ({ navigation }) => {
   // Navigation
-  //const navigation = useNavigation<Navigation>();
-
   const handleEditPress = (event) => {
     navigation.navigate("UpdateEvents", { event });
   };
 
   const handleAddPress = (id) => {
-    navigation.navigate("Actividades", {id : id});
+    navigation.navigate("Actividades", { id });
   };
 
   // Events
@@ -77,14 +75,15 @@ const OwnEvents = ({ navigation }) => {
     </View>
     {events.length > 0 ? (
       <ScrollView contentContainerStyle={styles.itemContainer}>
-        {events.map((event,key) => (
+        {events.map((event,key) => ( 
           <MiniEventCard
             key={key}
             {...event} 
             eventId={event}
             category={event.categoryName}
+            editable={true}
             onEditPress={() => handleEditPress(event)}
-            onCardPress={(pablo) => handleAddPress(pablo)}
+            onCardPress={(id) => handleAddPress(id)}
           />
         ))}
       </ScrollView>

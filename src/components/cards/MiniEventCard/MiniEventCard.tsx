@@ -1,5 +1,5 @@
 // Imports
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import { Text, View, Image, Pressable} from 'react-native'
 import { handleDate } from '../../../utils/handleDate';
@@ -9,15 +9,15 @@ import { styles } from './MiniEventCard.style'
 // Components
 import IconTextButton from '../../buttons/IconTextButton/IconTextButton';
 import { deleteEvent } from '../../../api/events/events';
+import { useAuth } from '../../../context/AuthContext';
 
 const MiniEventCard = (props) => {
-    const navigation = useNavigation();
     const start = handleDate(props.startTime);
 
     const handleCardPress = () => {
         props.onCardPress(props.eventId._id);
     }
-
+    
     return (
         <View style={styles.card}>
             <View style={styles.pictureContainer}>
@@ -42,7 +42,7 @@ const MiniEventCard = (props) => {
                 </View>
             </View>
         </Pressable>
-        {!props.onEditPress ? null :
+        {props.editable ? (
             <View style={styles.footerContainer}>
                 <IconTextButton
                     text="Editar "
@@ -57,7 +57,16 @@ const MiniEventCard = (props) => {
                     onPress={() => deleteEvent(props.eventId._id)}
                 />
             </View>
-        }
+        ) : (
+            <View style={styles.footerContainer}>
+                <IconTextButton
+                    text="Inscribirse"
+                    iconName="pencil"
+                    iconPosition="right"
+                    onPress={() => console.log()}
+                />
+            </View>
+        )}
         </View>
     )
 };
@@ -74,6 +83,11 @@ MiniEventCard.propTypes = {
   owner: PropTypes.any,
   onEditPress: PropTypes.func,
   eventId: PropTypes.any,
+  editable: PropTypes.bool,
 };
 
 export default MiniEventCard;
+function onGetProfile() {
+    throw new Error('Function not implemented.');
+}
+
