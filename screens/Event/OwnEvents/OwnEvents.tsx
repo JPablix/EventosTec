@@ -79,8 +79,7 @@ const OwnEvents = ({ navigation }) => {
           <MiniEventCard
             key={key}
             {...event} 
-            eventId={event}
-            category={event.categoryName}
+            event={event}
             editable={true}
             onEditPress={() => handleEditPress(event)}
             onCardPress={(id) => handleAddPress(id)}

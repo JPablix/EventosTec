@@ -11,25 +11,30 @@ import IconTextButton from '../../buttons/IconTextButton/IconTextButton';
 import { deleteEvent } from '../../../api/events/events';
 import { useAuth } from '../../../context/AuthContext';
 
-const MiniEventCard = (props) => {
-    const start = handleDate(props.startTime);
+import {
+    joinUserToEvent,
+    leaveUserFromEvent,
+  } from "../../../api/events/events";
 
+const MiniEventCard = (props) => {
+
+    const start = handleDate(props.event.startTime);
     const handleCardPress = () => {
-        props.onCardPress(props.eventId._id);
+        props.onCardPress(props.event._id);
     }
     
     return (
         <View style={styles.card}>
             <View style={styles.pictureContainer}>
                 <Image style={styles.pictures} source={props.pictureSource ? props.pictureSource : require("../../../assets/eventDefault.png")} />
-                <Text style={styles.category}>{props.category}</Text>
-                <Text style={styles.ownerName}>{props.owner.userName}</Text>
+                <Text style={styles.category}>{props.event.categoryName}</Text>
+                <Text style={styles.ownerName}>{props.event.owner.userName}</Text>
             </View>
         <Pressable onPress={handleCardPress}>  
             <View style={styles.infoContainer}>
-                <Text style={styles.title}>{props.title}</Text>
+                <Text style={styles.title}>{props.event.title}</Text>
                 <Text style={styles.infoTitle}>Descripción</Text>
-                <Text style={styles.infoText}>{props.description}</Text>
+                <Text style={styles.infoText}>{props.event.description}</Text>
                 <View style={styles.siteInfo}>
                     <View style={styles.datetimeInfo}>
                         <Text style={styles.infoTitle}>Fecha</Text>
@@ -37,7 +42,7 @@ const MiniEventCard = (props) => {
                     </View>
                     <View style={styles.datetimeInfo}>
                         <Text style={styles.infoTitle}>Lugar</Text>
-                        <Text style={styles.infoText}>{props.location}</Text>
+                        <Text style={styles.infoText}>{props.event.location}</Text>
                     </View>
                 </View>
             </View>
@@ -54,14 +59,14 @@ const MiniEventCard = (props) => {
                     text="Borrar "
                     iconName="trash"
                     iconPosition="right"
-                    onPress={() => deleteEvent(props.eventId._id)}
+                    onPress={() => deleteEvent(props.event._id)}
                 />
             </View>
         ) : (
             <View style={styles.footerContainer}>
                 <IconTextButton
-                    text="Inscribirse"
-                    iconName="pencil"
+                    text="Ingresar "
+                    iconName="question"
                     iconPosition="right"
                     onPress={() => console.log()}
                 />
@@ -73,21 +78,10 @@ const MiniEventCard = (props) => {
 
 //Props
 MiniEventCard.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  category: PropTypes.string,
-  startTime: PropTypes.string,
-  location: PropTypes.string,
   pictureSource: PropTypes.any,
   onCardPress: PropTypes.func,
-  owner: PropTypes.any,
   onEditPress: PropTypes.func,
-  eventId: PropTypes.any,
   editable: PropTypes.bool,
 };
 
 export default MiniEventCard;
-function onGetProfile() {
-    throw new Error('Function not implemented.');
-}
-
